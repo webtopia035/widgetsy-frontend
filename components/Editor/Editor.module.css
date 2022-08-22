@@ -1,0 +1,43 @@
+.editor_container {
+  width: 80vw;
+  height: 90vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.header {
+  margin-top: 40px;
+  width: 85%;
+  display: flex;
+  align-items: center;
+  font-family: "Poppins", sans-serif;
+}
+
+.name {
+  font-size: 30px;
+}
+
+.widget {
+  padding: 5px 20px;
+  border-radius: 20px;
+  font-weight: 500;
+  margin-left: 30px;
+  color: #099cfc;
+  background-color: #18232c;
+}
+
+.output_container {
+  margin-top: 40px;
+  width: 60%;
+  height: 60%;
+  background-color: rgb(85, 217, 253);
+}
+
+.slider {
+  margin-top: 50px;
+  width: 70%;
+  height: 20px;
+  background-color: white;
+}

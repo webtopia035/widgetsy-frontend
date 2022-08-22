@@ -1,8 +1,10 @@
-import React from "react";
+import React, { useState } from "react";
 import Link from "next/link";
 import styles from "../../styles/Login.module.css";
 
 const login = () => {
+  const [showPassword, setShowPassword] = useState(false);
+
   return (
     <div className={`${styles.auth} ${styles.login_page}`}>
       <div className={styles.auth_container}>
@@ -17,6 +19,7 @@ const login = () => {
               </label>
               <br />
               <input
+                required
                 className={`${styles.email} ${styles.input}`}
                 name="email"
                 type="email"
@@ -26,12 +29,26 @@ const login = () => {
                 Password
               </label>
               <br />
-              <input
-                className={`${styles.password} ${styles.input}`}
-                name="password"
-                type="password"
-              />
-              <br />
+              <div className={styles.password_container}>
+                <input
+                  required
+                  className={`${styles.password} ${styles.input}`}
+                  name="password"
+                  type={showPassword ? "text" : "password"}
+                />
+                {!showPassword ? (
+                  <i
+                    onClick={() => setShowPassword((prev) => !prev)}
+                    className={`${styles.show} bi bi-eye`}
+                  ></i>
+                ) : (
+                  <i
+                    onClick={() => setShowPassword((prev) => !prev)}
+                    className={`${styles.show} bi bi-eye-slash`}
+                  ></i>
+                )}
+              </div>
+
               <input className={styles.login_btn} type="submit" value="Login" />
             </form>
             <div className={styles.or}>OR</div>
