@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import Theme from "../Theme/Theme";
 import styles from "./Sidebar.module.css";
 
 const Sidebar = () => {
@@ -6,8 +7,8 @@ const Sidebar = () => {
   console.log(elements);
   return (
     <div className={styles.sidebar_container}>
-      <div className={styles.general}>General</div>
-      <div
+      {/* <div className={styles.general}>General</div>
+       <div
         className={styles.product_info}
         onClick={() => {
           setElements("info");
@@ -31,7 +32,8 @@ const Sidebar = () => {
         }}
       >
         Background
-      </div>
+      </div> */}
+      <Theme />
     </div>
   );
 };
