@@ -1,27 +1,43 @@
 .sidebar_container {
   width: 20vw;
   height: 90vh;
-  background-color: #292929;
+  background-color: #1f1f1f;
+  font-family: "Poppins", sans-serif;
 }
 
-.general,.design{
-  font-weight: bolder;
-  margin-left: 5px;
-  font-size: 30px;
-  margin-bottom: 15px;
-  color: white;
-  margin-top: 20px;
+.general_container {
+  margin-top: 45px;
 }
 
-.product_info,.product_theme,.product_backGround{
-  font-weight: 400;
-  margin-left: 15px;
-  font-size: 20px;
+.design_container {
+  margin-top: 35px;
+}
+
+.general,
+.design {
+  margin-left: 20px;
+  letter-spacing: 1px;
+  font-weight: 500;
+  font-size: 25px;
   margin-bottom: 10px;
   color: white;
-  cursor: pointer;
 }
 
-.general{
-  margin-top: 50px;
+.product_info,
+.product_theme,
+.product_background {
+  width: 90%;
+  padding-left: 35px;
+  font-size: 19px;
+  margin-bottom: 10px;
+  color: #bcbcbc;
+  cursor: pointer;
+  transition-duration: 300ms;
+}
+
+.product_info:hover,
+.product_theme:hover,
+.product_background:hover {
+  background-color: #41484d;
+  border-radius: 0 20px 20px 0;
 }

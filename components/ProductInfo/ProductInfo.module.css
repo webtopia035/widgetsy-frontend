@@ -1,0 +1,71 @@
+.back_arrow > i {
+  color: #4ab0ff;
+  margin-right: 15px;
+  font-weight: bolder;
+}
+
+.back_arrow {
+  margin: 20px;
+  cursor: pointer;
+  user-select: none;
+  display: inline-block;
+}
+
+.content {
+  width: 90%;
+  padding-left: 20px;
+}
+
+.section_name {
+  font-size: 25px;
+  margin-bottom: 5px;
+}
+
+.product_info {
+  font-size: 15px;
+  color: #bcbcbc;
+  margin-bottom: 25px;
+}
+
+.name_label,
+.description_label {
+  font-size: 13px;
+}
+
+.example,
+.file_name {
+  font-size: 11px;
+  color: #9a9a9a;
+}
+
+.name_input,
+.textarea {
+  width: 100%;
+  outline: none;
+  border: none;
+  background-color: #40484f;
+  font-family: "Poppins", sans-serif;
+  border-radius: 10px;
+}
+
+.name_input::placeholder,
+.textarea::placeholder {
+  color: #b8b8b8;
+}
+
+.name_input {
+  margin-top: 10px;
+  height: 40px;
+  padding: 0 10px;
+}
+
+.file_name {
+  margin: 15px 0;
+}
+
+.textarea {
+  margin-top: 5px;
+  height: 250px;
+  resize: none;
+  padding: 10px 10px;
+}

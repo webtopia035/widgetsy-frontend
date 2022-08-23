@@ -9,23 +9,23 @@
 
 .auth_container {
   width: 60%;
-  height: 70%;
+  height: 75%;
   border-radius: 10px;
   display: flex;
 }
 
 .image_container {
-  width: 50%;
+  width: 40%;
   height: 100%;
   border-radius: 10px 0 0 10px;
   background-color: rgb(57, 192, 255);
 }
 
 .login_container {
-  width: 50%;
+  width: 60%;
   height: 100%;
   border-radius: 0 10px 10px 0;
-  background-color: #292929;
+  background-color: #1f1f1f;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -38,6 +38,7 @@
 .header {
   font-size: 33px;
   font-weight: 500;
+  line-height: 35px;
 }
 
 .header_text,
@@ -49,7 +50,7 @@
 }
 
 .signup_text {
-  margin-top: 3px;
+  margin-top: 7px;
 }
 
 .labels {
@@ -89,7 +90,7 @@
   width: 40px;
   height: 35px;
   border-left: 1px solid #7f7f7f68;
-  background-color: rgb(64, 72, 79);
+  background-color: #40484f;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -131,6 +132,27 @@
 .or {
   width: 100%;
   text-align: center;
+  position: relative;
+}
+
+.or::before {
+  content: "";
+  width: 42%;
+  height: 1px;
+  background-color: #7f7f7f;
+  position: absolute;
+  top: 8px;
+  left: 0;
+}
+
+.or::after {
+  content: "";
+  width: 42%;
+  height: 1px;
+  background-color: #7f7f7f;
+  position: absolute;
+  top: 8px;
+  right: 0;
 }
 
 .login_google {

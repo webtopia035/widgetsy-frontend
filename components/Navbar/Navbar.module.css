@@ -4,5 +4,42 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  border-bottom: 1px solid #6b6b6b6c;
+  border-bottom: 1px solid #6b6b6b4c;
+  user-select: none;
+  box-shadow: #6b6b6b6c 0px 25px 20px -21px;
+}
+
+.buttons {
+  display: flex;
+  margin-right: 40px;
+}
+
+.btn {
+  font-size: 14px;
+  font-family: "Poppins", sans-serif;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  font-weight: 500;
+  border-radius: 20px;
+  margin: 0 10px;
+  width: 120px;
+  height: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+}
+
+.close_btn {
+  border: 1px solid #b7b7b77f;
+}
+
+.save_btn {
+  border: 1px solid #079dfd;
+  color: #079dfd;
+}
+
+.download_btn {
+  width: 250px;
+  background-color: #079dfd;
 }
