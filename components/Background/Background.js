@@ -1,5 +1,6 @@
 import React, { useCallback, useEffect, useRef, useState } from "react";
 import Image from "next/image";
+import rgbHex from "rgb-hex";
 import gsap from "gsap";
 import { Draggable } from "gsap/dist/Draggable";
 import { SketchPicker } from "react-color";
@@ -8,18 +9,24 @@ import styles from "./Background.module.css";
 
 const Background = () => {
   const [colorList, setColorList] = useState([
-    { color: "#ffffff", stop: 0 },
+    { color: "#fff", stop: 0 },
     { color: "#000", stop: 100 },
-    { color: "#ffffff", stop: 0 },
+    { color: "#fff", stop: 0 },
     { color: "#000", stop: 100 },
-    { color: "#ffffff", stop: 0 },
+    { color: "#fff", stop: 0 },
     { color: "#000", stop: 100 },
-    { color: "#ffffff", stop: 0 },
+    { color: "#fff", stop: 0 },
     { color: "#000", stop: 100 },
-    { color: "#ffffff", stop: 0 },
+    { color: "#fff", stop: 0 },
     { color: "#000", stop: 100 },
   ]);
-  const [color, setColor] = useState({ r: "0", g: "0", b: "0", a: "1" });
+  const [rgbColor, setRgbColor] = useState({
+    r: "255",
+    g: "255",
+    b: "255",
+    a: "1",
+  });
+  const [hexColor, setHexColor] = useState("#fff");
   const [displayColorPicker, setDisplayColorPicker] = useState(false);
   const [angle, setAngle] = useState(0);
   const angleRef = useRef(null);
@@ -27,7 +34,6 @@ const Background = () => {
 
   useEffect(() => {
     gsap.registerPlugin(Draggable);
-
     dragInstance.current = Draggable.create(angleRef.current, {
       type: "rotation",
       onDrag() {
@@ -39,7 +45,11 @@ const Background = () => {
 
   const onRotate = useCallback(
     (value) => {
-      setAngle(Math.floor(value % 360));
+      if (value >= 0) {
+        setAngle(Math.floor(value % 360));
+      } else {
+        setAngle(360 + Math.floor(value % 360));
+      }
     },
     [setAngle]
   );
@@ -53,7 +63,19 @@ const Background = () => {
   };
 
   const handleChange = (color) => {
-    setColor(color.rgb);
+    setHexColor(color.hex);
+  };
+
+  const handleHex = (e) => {
+    setHexColor(e.target.value);
+  };
+
+  const handleRemove = (index) => {
+    if (colorList.length > 2) {
+      const tempArr = colorList;
+      tempArr.splice(index, 1);
+      setColorList([...tempArr]);
+    }
   };
 
   return (
@@ -72,12 +94,14 @@ const Background = () => {
           <input
             placeholder="Hex Code"
             className={styles.input}
+            maxLength={9}
             type="text"
-            defaultValue="#ffffff"
+            onChange={handleHex}
+            value={hexColor}
           />
           <div
             style={{
-              backgroundColor: `rgba(${color.r}, ${color.g}, ${color.b}, ${color.a})`,
+              backgroundColor: `${hexColor}`,
             }}
             className={styles.color_picker}
             onClick={handleClick}
@@ -85,7 +109,12 @@ const Background = () => {
           {displayColorPicker ? (
             <div className={styles.popover}>
               <div className={styles.cover} onClick={handleClose} />
-              <SketchPicker color={color} onChange={handleChange} />
+              <SketchPicker
+                disableAlpha={true}
+                width={300}
+                color={hexColor}
+                onChange={handleChange}
+              />
             </div>
           ) : null}
         </div>
@@ -94,8 +123,8 @@ const Background = () => {
             placeholder="Hex Code"
             className={styles.input}
             type="text"
-            defaultValue={0}
             value={`${angle}°`}
+            onChange={(e) => onRotate(e.target.value)}
           />
           <span ref={angleRef} className={styles.rotation_dial}>
             <Image
@@ -133,11 +162,14 @@ const Background = () => {
                     <input
                       className={styles.stop}
                       type="number"
-                      defaultValue={color.stop}
+                      value={color.stop}
                     />
                   </td>
                   <td>
-                    <i className={`${styles.cross} bi bi-x`}></i>
+                    <i
+                      onClick={() => handleRemove(index)}
+                      className={`${styles.cross} bi bi-x`}
+                    ></i>
                   </td>
                 </tr>
               );
