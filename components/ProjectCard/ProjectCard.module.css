@@ -1,31 +1,31 @@
-.project_card{
-    height:200px;
-    width: 200px;
-    background-color: #292929;
-    margin: 10% 2.5%;
-    margin-top: 0;
-    border-radius: 20px;
-    justify-self: center;
+.project_card {
+  height: 200px;
+  width: 200px;
+  background-color: #292929;
+  margin: 10% 2.5%;
+  margin-top: 0;
+  border-radius: 20px;
+  justify-self: center;
+  cursor: pointer;
 }
 
-.project_icon{
-    background-color: cyan;
-    height: 50%;
-    width: 100%;
-    border-radius: 20px 20px 0 0;
+.project_icon {
+  background-color: cyan;
+  height: 50%;
+  width: 100%;
+  border-radius: 20px 20px 0 0;
 }
 
-.project_name{
-    margin-top: 15px;
-    margin-left: 15px;
-    font-weight: bolder;
-    color: white;
+.project_name {
+  margin-top: 15px;
+  margin-left: 15px;
+  font-weight: bolder;
+  color: white;
 }
 
-.project_date{
-    margin-top: 15px;
-    margin-left: 15px;
-    font-weight: 200;
-    color: rgba(255, 255, 255, 0.486);
+.project_date {
+  margin-top: 15px;
+  margin-left: 15px;
+  font-weight: 200;
+  color: rgba(255, 255, 255, 0.486);
 }
-

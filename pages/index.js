@@ -1,3 +1,4 @@
+import Link from "next/link";
 import React from "react";
 import ProjectCard from "../components/ProjectCard/ProjectCard";
 import styles from "../styles/home.module.css";
@@ -13,17 +14,9 @@ const home = () => {
           </div>
           <div className={styles.new_proj}>New Project</div>
         </div>
-        <ProjectCard />
-        <ProjectCard />
-        <ProjectCard />
-        <ProjectCard />
-        <ProjectCard />
-        <ProjectCard />
-        <ProjectCard />
-        <ProjectCard />
-        <ProjectCard />
-        <ProjectCard />
-        <ProjectCard />
+        <Link passHref href="/builder">
+          <ProjectCard />
+        </Link>
       </div>
     </div>
   );

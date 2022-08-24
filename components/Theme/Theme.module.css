@@ -1,37 +1,43 @@
-.back_arrow>i{
-  color: rgb(0, 72, 255);
-  margin: 0 20px 0px 0px; 
+.back_arrow > i {
+  color: #4ab0ff;
+  margin-right: 15px;
   font-weight: bolder;
 }
 
-.back_arrow{
+.back_arrow {
   margin: 20px;
+  cursor: pointer;
+  user-select: none;
+  display: inline-block;
 }
 
-.element_title{
-  margin: 20px;
+.element_title {
+  font-family: "Poppins", sans-serif;
   font-size: 25px;
-  font-weight: bolder;
-  margin-bottom: 15px;
+  margin-bottom: 5px;
+  margin-left: 20px;
 }
 
-.theme_container{
+.theme_header {
+  font-size: 15px;
+  color: #bcbcbc;
+  margin-bottom: 25px;
+  margin-left: 20px;
+}
+
+.theme_container {
   display: flex;
   justify-content: space-between;
-  padding:0 20px
+  padding: 0 20px;
 }
 
-.theme{
+.theme {
+  cursor: pointer;
   background-color: white;
-  height: 15px;
-  width: 15px;
-  border-radius:50%;
+  height: 20px;
+  width: 20px;
+  border-radius: 50%;
   margin-bottom: 15px;
-}
-
-.theme_title{
-  color:#bcbcbc;
-  margin: 15px 20px;
 }
 
 .labels {
@@ -43,47 +49,63 @@
   margin-bottom: 5px;
 }
 
-.input {
-  font-family: "Poppins", sans-serif;
-  font-size: 13px;
-  width: 50%;
-  height: 35px;
-  margin-bottom: 10px;
-  margin-top: 2px;
-  background-color: rgb(64, 72, 79);
-  border: none;
-  outline: none;
-  border-radius: 10px;
-  padding: 0 15px;
-  margin-top: 0px;
-  margin-left: 0px;
-  padding-left: 0px;
+.theme_title {
+  color: #bcbcbc;
+  margin: 15px 20px 5px 20px;
 }
 
-.username {
-  margin-bottom: 0;
+.input {
   font-family: "Poppins", sans-serif;
   font-size: 13px;
   width: 80%;
   height: 35px;
   margin-bottom: 10px;
-  margin-top: 2px;
+  background-color: rgb(64, 72, 79);
+  border: none;
+  outline: none;
+  border-radius: 10px;
+  margin-top: 0px;
+  margin-left: 0px;
+  padding-left: 0px;
+  letter-spacing: 1px;
+}
+
+.input::placeholder {
+  color: #b8b8b8;
+}
+
+.theme_color {
+  font-family: "Poppins", sans-serif;
+  font-size: 13px;
+  width: 85%;
+  height: 35px;
   background-color: rgb(64, 72, 79);
   border: none;
   outline: none;
   border-radius: 10px;
   padding: 0 15px;
-  margin: 20px;
-  margin-top: 0px;
+  margin: 0 20px 20px;
   display: flex;
   justify-content: space-between;
 }
 
-.color_picker{
+.color_picker {
   align-self: center;
-  width: 30px;
-  height: 30px;
+  width: 25px;
+  height: 25px;
+  border-radius: 20%;
+  overflow: hidden;
+  cursor: pointer;
+}
+
+.color_picker::-webkit-color-swatch {
   border: none;
-  border-radius: 50%;
-  background: none;
+  border-radius: 20%;
+  padding: 0;
+}
+
+.color_picker::-webkit-color-swatch-wrapper {
+  border: none;
+  border-radius: 20%;
+  padding: 0;
 }
