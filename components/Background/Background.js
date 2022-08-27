@@ -1,34 +1,22 @@
-import React, { useCallback, useEffect, useRef, useState } from "react";
+import React, {
+  useCallback,
+  useContext,
+  useEffect,
+  useRef,
+  useState,
+} from "react";
 import Image from "next/image";
-import rgbHex from "rgb-hex";
 import gsap from "gsap";
 import { Draggable } from "gsap/dist/Draggable";
 import { SketchPicker } from "react-color";
+import BackgroundContext from "../../contexts/background";
 import rotationSvg from "../../public/assets/rotation-dial.svg";
 import styles from "./Background.module.css";
 
 const Background = () => {
-  const [colorList, setColorList] = useState([
-    { color: "#fff", stop: 0 },
-    { color: "#000", stop: 100 },
-    { color: "#fff", stop: 0 },
-    { color: "#000", stop: 100 },
-    { color: "#fff", stop: 0 },
-    { color: "#000", stop: 100 },
-    { color: "#fff", stop: 0 },
-    { color: "#000", stop: 100 },
-    { color: "#fff", stop: 0 },
-    { color: "#000", stop: 100 },
-  ]);
-  const [rgbColor, setRgbColor] = useState({
-    r: "255",
-    g: "255",
-    b: "255",
-    a: "1",
-  });
   const [hexColor, setHexColor] = useState("#fff");
   const [displayColorPicker, setDisplayColorPicker] = useState(false);
-  const [angle, setAngle] = useState(0);
+  const sliderCtx = useContext(BackgroundContext);
   const angleRef = useRef(null);
   const dragInstance = useRef(null);
 
@@ -46,12 +34,12 @@ const Background = () => {
   const onRotate = useCallback(
     (value) => {
       if (value >= 0) {
-        setAngle(Math.floor(value % 360));
+        sliderCtx.setAngle(Math.floor(value % 360));
       } else {
-        setAngle(360 + Math.floor(value % 360));
+        sliderCtx.setAngle(360 + Math.floor(value % 360));
       }
     },
-    [setAngle]
+    [sliderCtx.setAngle]
   );
 
   const handleClick = () => {
@@ -71,11 +59,23 @@ const Background = () => {
   };
 
   const handleRemove = (index) => {
-    if (colorList.length > 2) {
-      const tempArr = colorList;
+    if (sliderCtx.colors.length > 2) {
+      const tempArr = sliderCtx.colors;
       tempArr.splice(index, 1);
-      setColorList([...tempArr]);
+      sliderCtx.setColors([...tempArr]);
     }
+  };
+
+  const handleStop = (index, value) => {
+    const tempArr = sliderCtx.colors;
+    if (value > 100) {
+      tempArr[index].stop = 100;
+    } else if (value < 0) {
+      tempArr[index].stop = 0;
+    } else {
+      tempArr[index].stop = value;
+    }
+    sliderCtx.setColors([...tempArr]);
   };
 
   return (
@@ -87,7 +87,10 @@ const Background = () => {
       <div className={styles.section_name}>Design</div>
       <div className={styles.product_info}>Background</div>
       <div className={styles.gradient_container}>
-        <div className={styles.output}></div>
+        <div
+          className={styles.output}
+          style={{ background: `${sliderCtx.gradientColor}` }}
+        ></div>
       </div>
       <div className={styles.editing_panel}>
         <div className={styles.color_panel}>
@@ -123,7 +126,7 @@ const Background = () => {
             placeholder="Hex Code"
             className={styles.input}
             type="text"
-            value={`${angle}°`}
+            value={`${sliderCtx.angle}°`}
             onChange={(e) => onRotate(e.target.value)}
           />
           <span ref={angleRef} className={styles.rotation_dial}>
@@ -149,7 +152,7 @@ const Background = () => {
             </tr>
           </thead>
           <tbody>
-            {colorList.map((color, index) => {
+            {sliderCtx.colors.map((color, index) => {
               return (
                 <tr className={styles.rows} key={index}>
                   <td>
@@ -161,6 +164,7 @@ const Background = () => {
                   <td>
                     <input
                       className={styles.stop}
+                      onChange={(e) => handleStop(index, e.target.value)}
                       type="number"
                       value={color.stop}
                     />

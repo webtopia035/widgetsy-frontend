@@ -33,12 +33,6 @@
   margin-top: 40px;
   width: 60%;
   height: 60%;
-  background-color: rgb(85, 217, 253);
-}
-
-.slider {
-  margin-top: 50px;
-  width: 70%;
-  height: 20px;
-  background-color: white;
+  border-radius: 5px;
+  box-shadow: #9f9f9f75 0px 7px 29px 0px;
 }

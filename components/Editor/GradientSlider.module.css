@@ -1,0 +1,33 @@
+.slider_container {
+  margin-top: 50px;
+  width: 70%;
+  height: 20px;
+  position: relative;
+}
+
+.bar {
+  background-color: white;
+  width: 100%;
+  height: 100%;
+  border-radius: 5px;
+  box-shadow: 0 0 0 2px #4c4c4c, 0 0 0 4px #c7e7ff;
+}
+
+.slider {
+  position: absolute;
+  cursor: move;
+  bottom: -7px;
+  height: 35px;
+  width: 12px;
+  border-radius: 10px;
+  box-shadow: 0 0 0 3px #4c4c4c, 0 0 0 5px #c7e7ff;
+  /* transition-duration: 400ms; */
+}
+
+.slider:hover {
+  box-shadow: 0 0 0 3px #4c4c4c, 0 0 0 5px #c7e7ff, 0 0 0 8px #ffffff7d;
+}
+
+.active {
+  box-shadow: 0 0 0 3px #4c4c4c, 0 0 0 5px #c7e7ff, 0 0 0 8px #ffffff7d;
+}
