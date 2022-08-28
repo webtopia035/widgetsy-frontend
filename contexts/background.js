@@ -14,6 +14,10 @@ const BackgroundContext = React.createContext({
   setActive: () => {},
   gradientColor: "",
   setGradientColor: () => {},
+  hexColor: "",
+  setHexColor: () => {},
+  elements: "",
+  setElements: () => {},
 });
 
 export const BackgroundContextProvider = (props) => {
@@ -21,6 +25,8 @@ export const BackgroundContextProvider = (props) => {
   const [angle, setAngle] = useState(0);
   const [active, setActive] = useState(0);
   const [gradientColor, setGradientColor] = useState("");
+  const [hexColor, setHexColor] = useState("#fff");
+  const [elements, setElements] = useState("");
 
   return (
     <BackgroundContext.Provider
@@ -33,6 +39,10 @@ export const BackgroundContextProvider = (props) => {
         setActive: setActive,
         gradientColor: gradientColor,
         setGradientColor: setGradientColor,
+        hexColor: hexColor,
+        setHexColor: setHexColor,
+        elements: elements,
+        setElements: setElements,
       }}
     >
       {props.children}

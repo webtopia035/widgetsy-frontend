@@ -14,12 +14,11 @@ import rotationSvg from "../../public/assets/rotation-dial.svg";
 import styles from "./Background.module.css";
 
 const Background = () => {
-  const [hexColor, setHexColor] = useState("#fff");
   const [displayColorPicker, setDisplayColorPicker] = useState(false);
   const sliderCtx = useContext(BackgroundContext);
   const angleRef = useRef(null);
   const dragInstance = useRef(null);
-
+  // console.log(sliderCtx.colors);
   useEffect(() => {
     gsap.registerPlugin(Draggable);
     dragInstance.current = Draggable.create(angleRef.current, {
@@ -51,12 +50,17 @@ const Background = () => {
   };
 
   const handleChange = (color) => {
-    setHexColor(color.hex);
+    sliderCtx.setHexColor(color.hex);
+    let tempArr = sliderCtx.colors;
+    tempArr[sliderCtx.active].color = color.hex;
+    sliderCtx.setColors([...tempArr]);
   };
 
   const handleHex = (e) => {
-    setHexColor(e.target.value);
+    sliderCtx.setHexColor(e.target.value);
   };
+
+  useEffect(() => {}, [sliderCtx.colors]);
 
   const handleRemove = (index) => {
     if (sliderCtx.colors.length > 2) {
@@ -80,7 +84,12 @@ const Background = () => {
 
   return (
     <div className={styles.background_container}>
-      <div className={styles.back_arrow}>
+      <div
+        className={styles.back_arrow}
+        onClick={() => {
+          sliderCtx.setElements("sidebar");
+        }}
+      >
         <i className="bi bi-arrow-left" />
         Back
       </div>
@@ -100,11 +109,11 @@ const Background = () => {
             maxLength={9}
             type="text"
             onChange={handleHex}
-            value={hexColor}
+            value={sliderCtx.hexColor}
           />
           <div
             style={{
-              backgroundColor: `${hexColor}`,
+              backgroundColor: `${sliderCtx.hexColor}`,
             }}
             className={styles.color_picker}
             onClick={handleClick}
@@ -115,7 +124,7 @@ const Background = () => {
               <SketchPicker
                 disableAlpha={true}
                 width={300}
-                color={hexColor}
+                color={sliderCtx.hexColor}
                 onChange={handleChange}
               />
             </div>
@@ -159,6 +168,9 @@ const Background = () => {
                     <div
                       className={styles.color_data}
                       style={{ backgroundColor: `${color.color}` }}
+                      onClick={() => {
+                        sliderCtx.setHexColor(color.color);
+                      }}
                     ></div>
                   </td>
                   <td>

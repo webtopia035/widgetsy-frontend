@@ -1,10 +1,19 @@
-import React from "react";
+import React, { useContext, useState } from "react";
+import BackgroundContext from "../../contexts/background";
 import styles from "./Theme.module.css";
 
 const Theme = () => {
+  const sliderCtx = useContext(BackgroundContext);
+  const [primary, setPrimary] = useState("#ffffff");
+  const [fontColor, setFontColor] = useState("#ffffff");
   return (
     <>
-      <div className={styles.back_arrow}>
+      <div
+        className={styles.back_arrow}
+        onClick={() => {
+          sliderCtx.setElements("sidebar");
+        }}
+      >
         <i className="bi bi-arrow-left" />
         Back
       </div>
@@ -26,12 +35,20 @@ const Theme = () => {
           placeholder="Hex Code"
           className={styles.input}
           type="text"
-          defaultValue="#ffffff"
+          defaultValue={primary}
+          value={primary}
+          onChange={(e) => {
+            setPrimary(e.target.value);
+          }}
         />
         <input
           className={styles.color_picker}
           type="color"
-          defaultValue="#ffffff"
+          value={primary}
+          defaultValue={primary}
+          onChange={(e) => {
+            setPrimary(e.target.value);
+          }}
         />
       </div>
       <label className={styles.labels}>Font color</label>
@@ -40,12 +57,20 @@ const Theme = () => {
           placeholder="Hex Code"
           className={styles.input}
           type="text"
-          defaultValue="#ffffff"
+          defaultValue={fontColor}
+          value={fontColor}
+          onChange={(e) => {
+            setFontColor(e.target.value);
+          }}
         />
         <input
           className={styles.color_picker}
           type="color"
-          defaultValue="#ffffff"
+          defaultValue={fontColor}
+          value={fontColor}
+          onChange={(e) => {
+            setFontColor(e.target.value);
+          }}
         />
       </div>
       <br />

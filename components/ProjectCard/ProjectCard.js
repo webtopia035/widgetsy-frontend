@@ -16,4 +16,6 @@ const ProjectCard = React.forwardRef(({ onClick, href }, ref) => {
   );
 });
 
+ProjectCard.displayName = "ProjectCard";
+
 export default ProjectCard;
