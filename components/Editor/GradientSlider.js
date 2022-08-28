@@ -5,6 +5,7 @@ import styles from "./GradientSlider.module.css";
 
 const GradientSlider = () => {
   const sliderContainer = useRef(null);
+  const nodeRef = useRef(null);
   const [parentWidth, setParentWidth] = useState(0);
   const [gradient, setGradient] = useState("");
   const sliderCtx = useContext(BackgroundContext);
@@ -32,15 +33,18 @@ const GradientSlider = () => {
 
   const handleColors = (e) => {
     e.stopPropagation();
+    sliderCtx.setElements("background");
     const rect = e.target.getBoundingClientRect();
     const x = e.clientX - rect.left;
     const position = Math.floor((x / parentWidth) * 100);
+    console.log(position);
     const newColor = {
-      color: "#5dfe66",
+      color: sliderCtx.hexColor,
       stop: position,
       stopPx: x,
     };
     const insertPos = searchInsert(sliderCtx.colors, position);
+    sliderCtx.setActive(insertPos);
     let tempArr = sliderCtx.colors;
     tempArr.splice(insertPos, 0, newColor);
     sliderCtx.setColors([...tempArr]);
@@ -49,6 +53,27 @@ const GradientSlider = () => {
   const handleActive = (index, e) => {
     e.stopPropagation();
     sliderCtx.setActive(index);
+  };
+
+  const handleDrag = (e, index) => {
+    e.stopPropagation();
+    const rect = e.clientX;
+    // const rect = getOffset(e.target).left;
+    const parentRect = sliderContainer.current.getBoundingClientRect().left;
+    const rectLocation = rect - parentRect;
+    // console.log(rect.x, parentWidth);
+    // console.log(Math.floor((rectLocation / parentWidth) * 100));
+    const position = Math.floor((rectLocation / parentWidth) * 100);
+    const tempArr = sliderCtx.colors;
+    if (position > 100) {
+      tempArr[index].stop = 100;
+    } else if (position < 0) {
+      tempArr[index].stop = 0;
+    } else {
+      tempArr[index].stop = position;
+    }
+    console.log(tempArr);
+    sliderCtx.setColors([...tempArr]);
   };
 
   const searchInsert = (colors, target) => {
@@ -79,6 +104,7 @@ const GradientSlider = () => {
       {sliderCtx.colors.map((color, index) => {
         return (
           <Draggable
+            nodeRef={nodeRef}
             axis="x"
             bounds={{
               top: 0,
@@ -88,12 +114,13 @@ const GradientSlider = () => {
             }}
             key={index}
             allowAnyClick={false}
+            onDrag={(e) => {
+              handleDrag(e, index);
+            }}
           >
             <div
+              ref={nodeRef}
               onClick={(e) => handleActive(index, e)}
-              onLoad={() => {
-                setParentWidth(sliderContainer.current.clientWidth);
-              }}
               className={
                 sliderCtx.active === index
                   ? `${styles.slider} ${styles.active}`

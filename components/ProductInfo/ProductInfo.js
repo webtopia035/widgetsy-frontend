@@ -1,10 +1,18 @@
-import React from "react";
+import React, { useContext } from "react";
+import BackgroundContext from "../../contexts/background";
 import styles from "./ProductInfo.module.css";
 
 const ProductInfo = () => {
+  const sliderCtx = useContext(BackgroundContext);
+
   return (
     <div className={styles.container}>
-      <div className={styles.back_arrow}>
+      <div
+        className={styles.back_arrow}
+        onClick={() => {
+          sliderCtx.setElements("sideBar");
+        }}
+      >
         <i className="bi bi-arrow-left" />
         Back
       </div>

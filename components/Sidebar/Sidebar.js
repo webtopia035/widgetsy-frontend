@@ -1,19 +1,20 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import Theme from "../Theme/Theme";
 import ProductInfo from "../ProductInfo/ProductInfo";
 import styles from "./Sidebar.module.css";
 import Background from "../Background/Background";
+import BackgroundContext from "../../contexts/background";
 
 const Sidebar = () => {
-  const [elements, setElements] = useState("");
+  const sliderCtx = useContext(BackgroundContext);
 
   return (
     <div className={styles.sidebar_container}>
-      {elements === "info" ? (
+      {sliderCtx.elements === "info" ? (
         <ProductInfo />
-      ) : elements === "theme" ? (
+      ) : sliderCtx.elements === "theme" ? (
         <Theme />
-      ) : elements === "background" ? (
+      ) : sliderCtx.elements === "background" ? (
         <Background />
       ) : (
         <>
@@ -22,7 +23,7 @@ const Sidebar = () => {
             <div
               className={styles.product_info}
               onClick={() => {
-                setElements("info");
+                sliderCtx.setElements("info");
               }}
             >
               Product Information
@@ -33,7 +34,7 @@ const Sidebar = () => {
             <div
               className={styles.product_theme}
               onClick={() => {
-                setElements("theme");
+                sliderCtx.setElements("theme");
               }}
             >
               Theme
@@ -41,7 +42,7 @@ const Sidebar = () => {
             <div
               className={styles.product_background}
               onClick={() => {
-                setElements("background");
+                sliderCtx.setElements("background");
               }}
             >
               Background
