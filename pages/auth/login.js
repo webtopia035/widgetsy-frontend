@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import Link from "next/link";
 import styles from "../../styles/Login.module.css";
 
-const login = () => {
+const Login = () => {
   const [showPassword, setShowPassword] = useState(false);
 
   return (
@@ -61,7 +61,7 @@ const login = () => {
               LOGIN WITH GOOGLE
             </button>
             <p className={styles.signup_text}>
-              Don't have an account?{" "}
+              Don&apos;t have an account?{" "}
               <span className={styles.signup_btn}>
                 <Link href="/auth/signup">Sign Up!</Link>
               </span>
@@ -73,4 +73,4 @@ const login = () => {
   );
 };
 
-export default login;
+export default Login;
