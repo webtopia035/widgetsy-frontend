@@ -1,18 +1,11 @@
 import React, { useState } from "react";
 import styles from "./Modal.module.css";
-import {
-  InputLabel,
-  MenuItem,
-  FormHelperText,
-  Select,
-  FormControl,
-} from "@mui/material";
 
 const Modals = React.forwardRef((props, ref) => {
-  const [age, setAge] = useState("");
-  const handleChange = (e) => {
-    setAge(e.target.value);
-  };
+  const [name, setName] = useState("");
+  const [template, setTemplate] = useState("");
+  const [description, setDescription] = useState("");
+
   return (
     <div className={styles.add_project_container} ref={ref}>
       <div className={styles.header}>Name your widget</div>
@@ -21,7 +14,7 @@ const Modals = React.forwardRef((props, ref) => {
       </div>
       <form className={styles.form_container}>
         <label className={styles.labels} htmlFor="widgetName">
-          Widget Name
+          Widget Name <span className={styles.required}>*</span>
         </label>
         <br />
         <input
@@ -32,7 +25,7 @@ const Modals = React.forwardRef((props, ref) => {
         />
         <br />
         <label className={styles.labels} htmlFor="widgetName">
-          Widget Template
+          Widget Template <span className={styles.required}>*</span>
         </label>
         <br />
         <select className={styles.dropdown} name="widgets">
@@ -48,7 +41,7 @@ const Modals = React.forwardRef((props, ref) => {
         </select>
         <br />
         <label className={styles.labels} htmlFor="widgetName">
-          Widget Description
+          Widget Description <span className={styles.required}>*</span>
         </label>
         <br />
         <textarea

@@ -12,10 +12,12 @@ const Editor = () => {
         <div className={styles.name}>Testing</div>
         <div className={styles.widget}>Clock</div>
       </div>
-      <div
-        className={styles.output_container}
-        style={{ background: `${sliderCtx.gradientColor}` }}
-      ></div>
+      {sliderCtx.gradientColor && (
+        <div
+          className={styles.output_container}
+          style={{ background: `${sliderCtx.gradientColor}` }}
+        ></div>
+      )}
       <GradientSlider />
     </div>
   );

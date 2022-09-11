@@ -10,13 +10,7 @@ const Home = () => {
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
   const ref = useRef(null);
-  // const [res, setRes] = useState("hello");
-  // useEffect(() => {
-  //   fetch("http://localhost:5000")
-  //     .then((res) => res.text())
-  //     .then((res) => setRes({ apiResponse: res }));
-  // }, []);
-  // console.log(res);
+
   return (
     <div className={styles.home_container}>
       <div className={styles.home_background}></div>

@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 
 const colorInitial = [
-  { color: "#fff", stop: 0, stopPx: 0 },
-  { color: "#000", stop: 100, stopPx: 600 },
+  { color: "#ffffff", stop: 0, stopPx: 0 },
+  { color: "#000000", stop: 100, stopPx: 800 },
 ];
 
 const BackgroundContext = React.createContext({
@@ -25,7 +25,7 @@ export const BackgroundContextProvider = (props) => {
   const [angle, setAngle] = useState(0);
   const [active, setActive] = useState(0);
   const [gradientColor, setGradientColor] = useState("");
-  const [hexColor, setHexColor] = useState("#fff");
+  const [hexColor, setHexColor] = useState("#ffffff");
   const [elements, setElements] = useState("");
 
   return (

@@ -128,6 +128,12 @@
   width: 100px;
 }
 
+.rows:hover,
+.active {
+  background-color: #2e2e2e;
+  transition-duration: 300ms;
+}
+
 .table_head {
   position: sticky;
   top: 0;
@@ -137,6 +143,7 @@
 .table_head th,
 .rows > td {
   text-align: center;
+  padding: 6px;
 }
 
 .table_head th {
@@ -172,6 +179,7 @@
   height: 30px;
   width: 100%;
   border-radius: 10px;
+  cursor: pointer;
 }
 
 .color_list::-webkit-scrollbar {

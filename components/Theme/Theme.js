@@ -35,7 +35,6 @@ const Theme = () => {
           placeholder="Hex Code"
           className={styles.input}
           type="text"
-          defaultValue={primary}
           value={primary}
           onChange={(e) => {
             setPrimary(e.target.value);
@@ -45,7 +44,6 @@ const Theme = () => {
           className={styles.color_picker}
           type="color"
           value={primary}
-          defaultValue={primary}
           onChange={(e) => {
             setPrimary(e.target.value);
           }}
@@ -57,7 +55,6 @@ const Theme = () => {
           placeholder="Hex Code"
           className={styles.input}
           type="text"
-          defaultValue={fontColor}
           value={fontColor}
           onChange={(e) => {
             setFontColor(e.target.value);
@@ -66,7 +63,6 @@ const Theme = () => {
         <input
           className={styles.color_picker}
           type="color"
-          defaultValue={fontColor}
           value={fontColor}
           onChange={(e) => {
             setFontColor(e.target.value);

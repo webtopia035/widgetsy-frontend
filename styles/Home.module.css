@@ -1,10 +1,10 @@
 .home_container {
   width: 100%;
-  overflow-x: hidden; 
+  overflow-x: hidden;
 }
 
 .home_container::-webkit-scrollbar {
-    display: none;
+  display: none;
 }
 
 .home_background {
@@ -14,28 +14,26 @@
   background: linear-gradient(
     295deg,
     rgba(10, 50, 251, 1) 0%,
-    rgba(23, 245, 238, 1) 100%
+    rgb(23, 193, 245) 100%
   );
   overflow-x: hidden;
 }
 
 .container {
   position: absolute;
+  margin-bottom: 50px;
   top: 40vh;
-  bottom: 0px;
-  height: 60vh;
   width: 100%;
-  padding-left: 10%;
-  padding-right: 10%;
+  padding: 0 10%;
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr;
   gap: 50px;
-  justify-content: center; 
+  justify-content: center;
 }
 
 .add_project_card {
-  height: 200px;
-  width: 200px;
+  height: 250px;
+  width: 250px;
   background-color: #292929;
   margin: 0 2.5%;
   border-radius: 20px;
@@ -43,8 +41,9 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  color: rgb(18, 233, 233);
-  justify-self: center ;
+  color: #c8c8c8;
+  justify-self: center;
+  cursor: pointer;
 }
 
 .plus_icon {
@@ -54,7 +53,8 @@
   justify-content: center;
   align-items: center;
   border-radius: 50%;
-  background-color: rgb(148, 148, 240);
+  color: white;
+  background-color: #129ae9;
 }
 
 .new_proj {

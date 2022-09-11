@@ -11,7 +11,7 @@
   height: 100%;
   border-radius: 5px;
   box-shadow: 0 0 0 2px #4c4c4c, 0 0 0 4px #c7e7ff;
-  position: relative;
+  position: absolute;
 }
 
 .slider {
@@ -22,13 +22,13 @@
   width: 12px;
   border-radius: 10px;
   box-shadow: 0 0 0 3px #4c4c4c, 0 0 0 5px #c7e7ff;
-  /* transition-duration: 400ms; */
 }
 
 .slider:hover {
-  box-shadow: 0 0 0 3px #4c4c4c, 0 0 0 5px #c7e7ff, 0 0 0 8px #ffffff7d;
+  box-shadow: 0 0 0 3px #4c4c4c, 0 0 0 5px #c7e7ff, 0 0 0 8px #ffffff9e;
 }
 
 .active {
-  box-shadow: 0 0 0 3px #4c4c4c, 0 0 0 5px #c7e7ff, 0 0 0 8px #ffffff7d;
+  box-shadow: 0 0 0 3px #4c4c4c, 0 0 0 5px #c7e7ff, 0 0 0 8px #ffffff9e;
+  z-index: 2;
 }

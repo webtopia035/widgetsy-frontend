@@ -18,7 +18,7 @@ const Background = () => {
   const sliderCtx = useContext(BackgroundContext);
   const angleRef = useRef(null);
   const dragInstance = useRef(null);
-  // console.log(sliderCtx.colors);
+
   useEffect(() => {
     gsap.registerPlugin(Draggable);
     dragInstance.current = Draggable.create(angleRef.current, {
@@ -49,6 +49,22 @@ const Background = () => {
     setDisplayColorPicker(false);
   };
 
+  const compare = (a, b) => {
+    if (a.stop < b.stop) {
+      return -1;
+    }
+    if (a.stop > b.stop) {
+      return 1;
+    }
+    return 0;
+  };
+
+  const handleBlur = () => {
+    const tempArr = sliderCtx.colors;
+    tempArr.sort(compare);
+    sliderCtx.setColors([...tempArr]);
+  };
+
   const handleChange = (color) => {
     sliderCtx.setHexColor(color.hex);
     let tempArr = sliderCtx.colors;
@@ -60,9 +76,8 @@ const Background = () => {
     sliderCtx.setHexColor(e.target.value);
   };
 
-  useEffect(() => {}, [sliderCtx.colors]);
-
-  const handleRemove = (index) => {
+  const handleRemove = (e, index) => {
+    e.stopPropagation();
     if (sliderCtx.colors.length > 2) {
       const tempArr = sliderCtx.colors;
       tempArr.splice(index, 1);
@@ -74,12 +89,18 @@ const Background = () => {
     const tempArr = sliderCtx.colors;
     if (value > 100) {
       tempArr[index].stop = 100;
-    } else if (value < 0) {
+    } else if (value < 0 || !value) {
       tempArr[index].stop = 0;
     } else {
-      tempArr[index].stop = value;
+      tempArr[index].stop = parseInt(value);
     }
     sliderCtx.setColors([...tempArr]);
+  };
+
+  const handleActive = (e, index, color) => {
+    e.stopPropagation();
+    sliderCtx.setActive(index);
+    sliderCtx.setHexColor(color.color);
   };
 
   return (
@@ -94,13 +115,10 @@ const Background = () => {
         Back
       </div>
       <div className={styles.section_name}>Design</div>
-      <div className={styles.product_info}>Background</div>
-      <div className={styles.gradient_container}>
-        <div
-          className={styles.output}
-          style={{ background: `${sliderCtx.gradientColor}` }}
-        ></div>
-      </div>
+      <div
+        className={styles.output}
+        style={{ background: `${sliderCtx.gradientColor}` }}
+      ></div>
       <div className={styles.editing_panel}>
         <div className={styles.color_panel}>
           <input
@@ -150,7 +168,7 @@ const Background = () => {
         </div>
       </div>
       <div className={styles.color_list}>
-        <table>
+        <table cellSpacing={0}>
           <thead className={styles.table_head}>
             <tr>
               <th>Color</th>
@@ -163,27 +181,33 @@ const Background = () => {
           <tbody>
             {sliderCtx.colors.map((color, index) => {
               return (
-                <tr className={styles.rows} key={index}>
+                <tr
+                  className={
+                    sliderCtx.active === index
+                      ? `${styles.rows} ${styles.active}`
+                      : `${styles.rows}`
+                  }
+                  onClick={(e) => handleActive(e, index, color)}
+                  key={index}
+                >
                   <td>
                     <div
                       className={styles.color_data}
                       style={{ backgroundColor: `${color.color}` }}
-                      onClick={() => {
-                        sliderCtx.setHexColor(color.color);
-                      }}
                     ></div>
                   </td>
                   <td>
                     <input
                       className={styles.stop}
                       onChange={(e) => handleStop(index, e.target.value)}
+                      onBlur={handleBlur}
                       type="number"
                       value={color.stop}
                     />
                   </td>
                   <td>
                     <i
-                      onClick={() => handleRemove(index)}
+                      onClick={(e) => handleRemove(e, index)}
                       className={`${styles.cross} bi bi-x`}
                     ></i>
                   </td>
