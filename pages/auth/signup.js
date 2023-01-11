@@ -2,8 +2,32 @@ import React, { useState } from "react";
 import Link from "next/link";
 import styles from "../../styles/Signup.module.css";
 
-const signup = () => {
+const Signup = () => {
   const [showPassword, setShowPassword] = useState(false);
+  const [cred, setCred] = useState({});
+  const authHandler = async (e) => {
+    e.preventDefault();
+    console.log(cred);
+
+    try {
+      const response = await fetch("http://localhost:8000/api/user/signup", {
+        method: "POSt",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          name: cred.username,
+          email: cred.email,
+          password: cred.password,
+        }),
+      });
+
+      const responseData = await response.json();
+      console.log(responseData);
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
   return (
     <div className={`${styles.auth} ${styles.signup_page}`}>
@@ -13,7 +37,7 @@ const signup = () => {
           <div className={styles.signup_content}>
             <div className={styles.header}>Create your account</div>
             <div className={styles.header_text}>Please enter your details.</div>
-            <form className={styles.form_container}>
+            <form className={styles.form_container} onSubmit={authHandler}>
               <label className={styles.labels} htmlFor="username">
                 Username
               </label>
@@ -24,6 +48,7 @@ const signup = () => {
                 className={`${styles.username} ${styles.input}`}
                 name="username"
                 type="text"
+                onChange={(e) => setCred({ ...cred, username: e.target.value })}
               />
               <p className={styles.username_rule}>
                 Max. 20 characters are allowed!
@@ -38,6 +63,7 @@ const signup = () => {
                 className={`${styles.email} ${styles.input}`}
                 name="email"
                 type="email"
+                onChange={(e) => setCred({ ...cred, email: e.target.value })}
               />
               <br />
 
@@ -51,6 +77,9 @@ const signup = () => {
                   className={`${styles.password} ${styles.input}`}
                   name="password"
                   type={showPassword ? "text" : "password"}
+                  onChange={(e) =>
+                    setCred({ ...cred, password: e.target.value })
+                  }
                 />
                 {!showPassword ? (
                   <i
@@ -73,6 +102,7 @@ const signup = () => {
             </form>
             <div className={styles.or}>OR</div>
             <button className={styles.signup_google}>
+              {/* eslint-disable-next-line @next/next/no-img-element */}
               <img
                 className={styles.google_logo}
                 src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/53/Google_%22G%22_Logo.svg/800px-Google_%22G%22_Logo.svg.png"
@@ -93,4 +123,4 @@ const signup = () => {
   );
 };
 
-export default signup;
+export default Signup;

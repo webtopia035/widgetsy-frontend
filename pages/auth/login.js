@@ -1,10 +1,42 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import Link from "next/link";
+import { useRouter } from "next/router";
+import ContextData from "../../contexts/contextData";
 import styles from "../../styles/Login.module.css";
 
 const Login = () => {
   const [showPassword, setShowPassword] = useState(false);
+  const [cred, setCred] = useState({});
+  const dataCtx = useContext(ContextData);
+  const router = useRouter();
 
+  const authHandler = async (e) => {
+    e.preventDefault();
+
+    try {
+      const response = await fetch("http://localhost:8000/api/user/login", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          email: cred.email,
+          password: cred.password,
+        }),
+      });
+
+      if (!response.ok) {
+        throw new Error(response.message);
+      }
+
+      const responseData = await response.json();
+      dataCtx.setUserId(responseData.users.id);
+      router.push("/");
+      console.log(dataCtx.userId);
+    } catch (error) {
+      console.log(error);
+    }
+  };
   return (
     <div className={`${styles.auth} ${styles.login_page}`}>
       <div className={styles.auth_container}>
@@ -13,7 +45,7 @@ const Login = () => {
           <div className={styles.login_content}>
             <div className={styles.header}>Welcome back!</div>
             <div className={styles.header_text}>Please enter your details.</div>
-            <form className={styles.form_container}>
+            <form className={styles.form_container} onSubmit={authHandler}>
               <label className={styles.labels} htmlFor="email">
                 Email address
               </label>
@@ -23,6 +55,7 @@ const Login = () => {
                 className={`${styles.email} ${styles.input}`}
                 name="email"
                 type="email"
+                onChange={(e) => setCred({ ...cred, email: e.target.value })}
               />
               <br />
               <label className={styles.labels} htmlFor="password">
@@ -35,6 +68,9 @@ const Login = () => {
                   className={`${styles.password} ${styles.input}`}
                   name="password"
                   type={showPassword ? "text" : "password"}
+                  onChange={(e) =>
+                    setCred({ ...cred, password: e.target.value })
+                  }
                 />
                 {!showPassword ? (
                   <i
@@ -53,6 +89,7 @@ const Login = () => {
             </form>
             <div className={styles.or}>OR</div>
             <button className={styles.login_google}>
+              {/* eslint-disable-next-line @next/next/no-img-element */}
               <img
                 className={styles.google_logo}
                 src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/53/Google_%22G%22_Logo.svg/800px-Google_%22G%22_Logo.svg.png"

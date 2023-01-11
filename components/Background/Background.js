@@ -34,6 +34,9 @@ const Background = () => {
     (value) => {
       if (value >= 0) {
         sliderCtx.setAngle(Math.floor(value % 360));
+        sliderCtx.setTheme((prev) => {
+          return { ...prev, rotation: Math.floor(value % 360) };
+        });
       } else {
         sliderCtx.setAngle(360 + Math.floor(value % 360));
       }
@@ -154,7 +157,9 @@ const Background = () => {
             className={styles.input}
             type="text"
             value={`${sliderCtx.angle}°`}
-            onChange={(e) => onRotate(e.target.value)}
+            onChange={(e) => {
+              onRotate(e.target.value);
+            }}
           />
           <span ref={angleRef} className={styles.rotation_dial}>
             <Image
