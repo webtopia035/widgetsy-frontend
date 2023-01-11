@@ -14,7 +14,7 @@ const GradientSlider = () => {
   const [gradient, setGradient] = useState("");
   const sliderCtx = useContext(BackgroundContext);
 
-  useLayoutEffect(() => {
+  useEffect(() => {
     function updateSize() {
       setParentWidth(sliderContainer.current.offsetWidth);
     }
@@ -24,26 +24,30 @@ const GradientSlider = () => {
   }, []);
 
   useEffect(() => {
-    let tempArr = sliderCtx.colors;
-    tempArr[tempArr.length - 1].stopPx = parentWidth;
-    sliderCtx.setColors([...tempArr]);
+    if (sliderCtx.colors) {
+      let tempArr = sliderCtx.colors;
+      tempArr[tempArr.length - 1].stopPx = parentWidth;
+      sliderCtx.setColors([...tempArr]);
+    }
   }, [parentWidth]);
 
   useEffect(() => {
-    let colorString = "";
-    sliderCtx.colors.forEach((color) => {
-      colorString += `${color.color} ${color.stop}%, `;
-    });
-    setGradient(
-      `linear-gradient(90deg, ${colorString.substring(
-        0,
-        colorString.length - 2
-      )})`
-    );
-    colorString = `linear-gradient(${
-      sliderCtx.angle
-    }deg, ${colorString.substring(0, colorString.length - 2)})`;
-    sliderCtx.setGradientColor(colorString);
+    if (sliderCtx.colors) {
+      let colorString = "";
+      sliderCtx.colors.forEach((color) => {
+        colorString += `${color.color} ${color.stop}%, `;
+      });
+      setGradient(
+        `linear-gradient(90deg, ${colorString.substring(
+          0,
+          colorString.length - 2
+        )})`
+      );
+      colorString = `linear-gradient(${
+        sliderCtx.angle
+      }deg, ${colorString.substring(0, colorString.length - 2)})`;
+      sliderCtx.setGradientColor(colorString);
+    }
   }, [sliderCtx.colors, sliderCtx.angle]);
 
   const handleColors = (e) => {
@@ -95,23 +99,24 @@ const GradientSlider = () => {
       {gradient && (
         <div className={styles.bar} style={{ background: `${gradient}` }}></div>
       )}
-      {sliderCtx.colors.map((color, index) => {
-        return (
-          <div
-            key={index}
-            onClick={(e) => handleActive(index, e)}
-            className={
-              sliderCtx.active === index
-                ? `${styles.slider} ${styles.active}`
-                : `${styles.slider}`
-            }
-            style={{
-              left: `${color.stop}%`,
-              backgroundColor: `${color.color}`,
-            }}
-          ></div>
-        );
-      })}
+      {sliderCtx.colors &&
+        sliderCtx.colors.map((color, index) => {
+          return (
+            <div
+              key={index}
+              onClick={(e) => handleActive(index, e)}
+              className={
+                sliderCtx.active === index
+                  ? `${styles.slider} ${styles.active}`
+                  : `${styles.slider}`
+              }
+              style={{
+                left: `${color.stop}%`,
+                backgroundColor: `${color.color}`,
+              }}
+            ></div>
+          );
+        })}
     </div>
   );
 };

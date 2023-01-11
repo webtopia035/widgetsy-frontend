@@ -27,6 +27,12 @@ const ProductInfo = () => {
               placeholder="Product name"
               className={styles.name_input}
               type="text"
+              defaultValue={sliderCtx.details.title}
+              onChange={(e) => {
+                sliderCtx.setDetails((prev) => {
+                  return { ...prev, title: e.target.value };
+                });
+              }}
             />
             <div className={styles.file_name}>File Name: clock_widget</div>
           </div>
@@ -35,6 +41,12 @@ const ProductInfo = () => {
             <textarea
               placeholder="Product description..."
               className={styles.textarea}
+              defaultValue={sliderCtx.details.description}
+              onChange={(e) => {
+                sliderCtx.setDetails((prev) => {
+                  return { ...prev, description: e.target.value };
+                });
+              }}
             />
           </div>
         </div>

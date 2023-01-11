@@ -1,11 +1,11 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import BackgroundContext from "../../contexts/background";
 import styles from "./Theme.module.css";
+const color = [1, 2, 3, 4, 5];
 
 const Theme = () => {
   const sliderCtx = useContext(BackgroundContext);
-  const [primary, setPrimary] = useState("#ffffff");
-  const [fontColor, setFontColor] = useState("#ffffff");
+
   return (
     <>
       <div
@@ -23,11 +23,19 @@ const Theme = () => {
         Choose Theme
       </div>
       <div className={styles.theme_container}>
-        <div className={styles.theme}></div>
-        <div className={styles.theme}></div>
-        <div className={styles.theme}></div>
-        <div className={styles.theme}></div>
-        <div className={styles.theme}></div>
+        {color.map((i) => {
+          return (
+            <div
+              key={i}
+              className={styles.theme}
+              onClick={(e) => {
+                sliderCtx.setTheme((prev) => {
+                  return { ...prev, themeNumber: i };
+                });
+              }}
+            ></div>
+          );
+        })}
       </div>
       <label className={styles.labels}>Primary Color</label>
       <div className={styles.theme_color}>
@@ -35,17 +43,21 @@ const Theme = () => {
           placeholder="Hex Code"
           className={styles.input}
           type="text"
-          value={primary}
+          value={sliderCtx.theme.primaryColor}
           onChange={(e) => {
-            setPrimary(e.target.value);
+            sliderCtx.setTheme((prev) => {
+              return { ...prev, primaryColor: e.target.value };
+            });
           }}
         />
         <input
           className={styles.color_picker}
           type="color"
-          value={primary}
+          value={sliderCtx.theme.primaryColor}
           onChange={(e) => {
-            setPrimary(e.target.value);
+            sliderCtx.setTheme((prev) => {
+              return { ...prev, primaryColor: e.target.value };
+            });
           }}
         />
       </div>
@@ -55,17 +67,21 @@ const Theme = () => {
           placeholder="Hex Code"
           className={styles.input}
           type="text"
-          value={fontColor}
+          value={sliderCtx.theme.secondaryColor}
           onChange={(e) => {
-            setFontColor(e.target.value);
+            sliderCtx.setTheme((prev) => {
+              return { ...prev, secondaryColor: e.target.value };
+            });
           }}
         />
         <input
           className={styles.color_picker}
           type="color"
-          value={fontColor}
+          value={sliderCtx.theme.secondaryColor}
           onChange={(e) => {
-            setFontColor(e.target.value);
+            sliderCtx.setTheme((prev) => {
+              return { ...prev, secondaryColor: e.target.value };
+            });
           }}
         />
       </div>
