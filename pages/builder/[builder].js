@@ -6,7 +6,7 @@ import BackgroundContext from "../../contexts/background";
 import Editor from "../../components/Editor/Editor";
 import Navbar from "../../components/Navbar/Navbar";
 import Sidebar from "../../components/Sidebar/Sidebar";
-import styles from "../../styles/Builder.module.css";
+import styles from "../../styles/builder.module.css";
 
 const Builder = () => {
   const router = useRouter();
