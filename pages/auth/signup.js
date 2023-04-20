@@ -1,16 +1,20 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
+import { config } from "../../utils/config";
+import { useRouter } from "next/router";
+import ContextData from "../../contexts/contextData";
 import Link from "next/link";
 import styles from "../../styles/Signup.module.css";
 
 const Signup = () => {
   const [showPassword, setShowPassword] = useState(false);
   const [cred, setCred] = useState({});
+  const dataCtx = useContext(ContextData);
+  const router = useRouter();
   const authHandler = async (e) => {
     e.preventDefault();
-    console.log(cred);
 
     try {
-      const response = await fetch("http://localhost:8000/api/user/signup", {
+      const response = await fetch(`${config.url}/api/user/signup`, {
         method: "POSt",
         headers: {
           "Content-Type": "application/json",
@@ -23,7 +27,8 @@ const Signup = () => {
       });
 
       const responseData = await response.json();
-      console.log(responseData);
+      dataCtx.setUserId(responseData.userId);
+      router.push("/");
     } catch (error) {
       console.log(error);
     }

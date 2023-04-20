@@ -1,5 +1,6 @@
 import React, { useContext, useEffect } from "react";
 import { useRouter } from "next/router";
+import { config } from "../../utils/config";
 import ContextData from "../../contexts/contextData";
 import BackgroundContext from "../../contexts/background";
 import Editor from "../../components/Editor/Editor";
@@ -19,7 +20,7 @@ const Builder = () => {
       const fetchWidgetData = async () => {
         try {
           const response = await fetch(
-            `http://localhost:8000/api/widget/${productId}`,
+            `${config.url}/api/widget/${productId}`,
             {
               method: "GET",
               headers: {

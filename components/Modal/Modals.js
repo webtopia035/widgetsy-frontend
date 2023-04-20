@@ -1,5 +1,6 @@
 import React, { useState, useContext } from "react";
 import ContextData from "../../contexts/contextData";
+import { config } from "../../utils/config";
 import styles from "./Modal.module.css";
 const colorInitial = [
   { color: "#ffffff", stop: 0, stopPx: 0 },
@@ -10,6 +11,7 @@ const themeInitial = {
   themeNumber: 1,
   primaryColor: "#ffffff",
   secondaryColor: "#ffffff",
+  rotation: 90,
 };
 
 const Modals = React.forwardRef((props, ref) => {
@@ -18,10 +20,9 @@ const Modals = React.forwardRef((props, ref) => {
 
   const widgetHandler = async (e) => {
     e.preventDefault();
-    console.log(dataCtx.userId);
 
     try {
-      const response = await fetch("http://localhost:8000/api/widget", {
+      const response = await fetch(`${config.url}/api/widget`, {
         method: "POSt",
         headers: {
           "Content-Type": "application/json",
@@ -45,7 +46,7 @@ const Modals = React.forwardRef((props, ref) => {
     }
   };
   return (
-    <div className={styles.add_project_container} ref={ref}>
+    <div className={styles.add_project_container} ref={ref} tabIndex={-1}>
       <div className={styles.header}>Name your widget</div>
       <div className={styles.header_text}>
         Please enter your widget details.
@@ -72,6 +73,15 @@ const Modals = React.forwardRef((props, ref) => {
           name="widgets"
           onChange={(e) => setWidget({ ...widget, type: e.target.value })}
         >
+          <option
+            defaultValue="none"
+            className={styles.menu_items}
+            selected
+            disabled
+            hidden
+          >
+            -Select an Widget-
+          </option>
           <option className={styles.menu_items} htmlFor="widgets">
             Clock
           </option>
@@ -97,7 +107,15 @@ const Modals = React.forwardRef((props, ref) => {
           }
         />
         <br />
-        <input className={styles.create_btn} type="submit" value="Create" />
+        <button
+          className={styles.create_btn}
+          onClick={async () => {
+            await props.getWidget();
+            props.onClose();
+          }}
+        >
+          Create
+        </button>
       </form>
     </div>
   );
