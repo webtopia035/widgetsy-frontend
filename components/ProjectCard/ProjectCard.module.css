@@ -18,16 +18,9 @@
 
 .project_name {
   margin: 15px 0 0 15px;
-  font-weight: bolder;
+  font-weight: 600;
   color: white;
-}
-
-.project_date {
-  margin-top: 15px;
-  margin-left: 15px;
-  font-size: 15px;
-  font-weight: 300;
-  color: rgba(255, 255, 255, 0.486);
+  font-size: 20px;
 }
 
 .project_delete{

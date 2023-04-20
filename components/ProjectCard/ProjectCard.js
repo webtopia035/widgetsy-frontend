@@ -1,5 +1,6 @@
 import React, { useContext } from "react";
 import ContextData from "../../contexts/contextData";
+import { config } from "../../utils/config";
 import styles from "./ProjectCard.module.css";
 
 const ProjectCard = React.forwardRef((props, ref) => {
@@ -15,15 +16,12 @@ const ProjectCard = React.forwardRef((props, ref) => {
 
     dataCtx.setTemplate([...temp]);
     try {
-      const response = await fetch(
-        `http://localhost:8000/api/widget/${props.wid.id}`,
-        {
-          method: "DELETE",
-          headers: {
-            "Content-Type": "application/json",
-          },
-        }
-      );
+      const response = await fetch(`${config.url}/api/widget/${props.wid.id}`, {
+        method: "DELETE",
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
 
       if (!response.ok) {
         throw new Error(response.message);
@@ -47,7 +45,6 @@ const ProjectCard = React.forwardRef((props, ref) => {
         </div>
       </div>
       <div className={styles.project_name}>{props.wid.title}</div>
-      <div className={styles.project_date}>date</div>
     </div>
   );
 });

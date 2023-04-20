@@ -1,5 +1,6 @@
 import React, { useState, useContext } from "react";
 import Link from "next/link";
+import { config } from "../../utils/config";
 import { useRouter } from "next/router";
 import ContextData from "../../contexts/contextData";
 import styles from "../../styles/Login.module.css";
@@ -14,7 +15,7 @@ const Login = () => {
     e.preventDefault();
 
     try {
-      const response = await fetch("http://localhost:8000/api/user/login", {
+      const response = await fetch(`${config.url}/api/user/login`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -30,9 +31,8 @@ const Login = () => {
       }
 
       const responseData = await response.json();
-      dataCtx.setUserId(responseData.users.id);
+      dataCtx.setUserId(responseData.userId);
       router.push("/");
-      console.log(dataCtx.userId);
     } catch (error) {
       console.log(error);
     }

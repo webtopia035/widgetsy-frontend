@@ -2,6 +2,7 @@ import React, { useContext } from "react";
 import { useRouter } from "next/router";
 import BackgroundContext from "../../contexts/background";
 import ContextData from "../../contexts/contextData";
+import { config } from "../../utils/config";
 import styles from "./Navbar.module.css";
 
 const Navbar = () => {
@@ -12,7 +13,7 @@ const Navbar = () => {
   const updateHandler = async () => {
     try {
       const response = await fetch(
-        `http://localhost:8000/api/widget/update/${dataCtx.widgetId}`,
+        `${config.url}/api/widget/update/${dataCtx.widgetId}`,
         {
           method: "PATCH",
           headers: {
@@ -35,7 +36,6 @@ const Navbar = () => {
 
       const responseData = await response.json();
       router.push("/");
-      console.log(responseData);
     } catch (error) {
       console.log(error);
     }

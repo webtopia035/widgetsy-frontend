@@ -1,10 +1,45 @@
 import React, { useContext, useEffect, useState } from "react";
+import Tooltip from "@mui/material/Tooltip";
+import Zoom from "@mui/material/Zoom";
 import BackgroundContext from "../../contexts/background";
 import styles from "./Theme.module.css";
-const color = [1, 2, 3, 4, 5];
+
+// list of different themes
+const themeName = [
+  "Transparent",
+  "Cinnamint",
+  "Sky Line",
+  "Deep Space",
+  "Purpink",
+];
+const color = ["#ffffff", "#12D8FA", "#0654a5", "#29323c", "#8c037a"];
+const themeColor = [
+  [],
+  [
+    { color: "#A6FFCB", stop: 0 },
+    { color: "#12D8FA", stop: 50 },
+    { color: "#1FA2FF", stop: 100 },
+  ],
+  [
+    { color: "#003973", stop: 0 },
+    { color: "#E5E5BE", stop: 100 },
+  ],
+  [
+    { color: "#485563", stop: 0 },
+    { color: "#29323c", stop: 100 },
+  ],
+  [
+    { color: "#8815bf", stop: 0 },
+    { color: "#AA076B", stop: 50 },
+    { color: "#ed0940", stop: 100 },
+  ],
+];
 
 const Theme = () => {
   const sliderCtx = useContext(BackgroundContext);
+  const handleThemeChange = (i) => {
+    sliderCtx.setColors(themeColor[i]);
+  };
 
   return (
     <>
@@ -23,17 +58,25 @@ const Theme = () => {
         Choose Theme
       </div>
       <div className={styles.theme_container}>
-        {color.map((i) => {
+        {color.map((col, i) => {
           return (
-            <div
+            <Tooltip
+              title={themeName[i]}
               key={i}
-              className={styles.theme}
-              onClick={(e) => {
-                sliderCtx.setTheme((prev) => {
-                  return { ...prev, themeNumber: i };
-                });
-              }}
-            ></div>
+              TransitionComponent={Zoom}
+              arrow
+            >
+              <div
+                className={styles.theme}
+                style={{ backgroundColor: col }}
+                onClick={(e) => {
+                  sliderCtx.setTheme((prev) => {
+                    return { ...prev, themeNumber: i };
+                  });
+                  handleThemeChange(i);
+                }}
+              ></div>
+            </Tooltip>
           );
         })}
       </div>
