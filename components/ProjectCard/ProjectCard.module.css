@@ -10,10 +10,14 @@
 }
 
 .project_icon {
-  background-color: cyan;
+  background-color: rgb(0, 0, 0);
   height: 65%;
   width: 100%;
   border-radius: 20px 20px 0 0;
+  box-shadow: inset 0px 0px 100px -40px rgba(255, 255, 255, 0.4);
+  justify-content: center;
+  align-items: center;
+  display: flex;
 }
 
 .project_name {
@@ -23,16 +27,34 @@
   font-size: 20px;
 }
 
-.project_delete{
+.project_delete {
   position: relative;
-  top:6%;
-  left: 88%;
-  box-shadow:rgba(0, 0, 0, 0.35) 0px 5px 15px;
-  background-color: rgb(7, 14, 232);
-  border-radius: 50%;
-  width: 25px;
+  top: 4%;
+  left: 75%;
+  width: 50px;
   height: 25px;
   display: flex;
   justify-content: center;
   cursor: pointer;
+  background-image: linear-gradient(
+    to right,
+    #232526 0%,
+    #414345 51%,
+    #232526 100%
+  );
+  /* margin: 10px;
+  padding: 15px 45px; */
+  text-align: center;
+  text-transform: uppercase;
+  transition: 0.5s;
+  background-size: 200% auto;
+  color: white;
+  box-shadow: 0 0 2px #eee;
+  border-radius: 10px;
+}
+
+.project_delete:hover {
+  background-position: right center; /* change the direction of the change here */
+  color: #fff;
+  text-decoration: none;
 }

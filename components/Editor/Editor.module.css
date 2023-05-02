@@ -6,6 +6,7 @@
   justify-content: flex-start;
   align-items: center;
   user-select: none;
+  overflow: hidden;
 }
 
 .header {
@@ -34,5 +35,10 @@
   width: 60%;
   height: 60%;
   border-radius: 5px;
-  box-shadow: #9f9f9f75 0px 7px 29px 0px;
+  box-shadow: #9f9f9f75 0px 0px 29px 0px;
+  backdrop-filter: blur(3px); 
+  background-color: rgb(228 228 228 / 15%);
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }

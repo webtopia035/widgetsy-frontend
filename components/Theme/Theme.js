@@ -46,6 +46,9 @@ const Theme = () => {
       <div
         className={styles.back_arrow}
         onClick={() => {
+          sliderCtx.setTheme((prev) => {
+            return { ...prev, themeNumber: 0 };
+          });
           sliderCtx.setElements("sidebar");
         }}
       >
@@ -110,20 +113,20 @@ const Theme = () => {
           placeholder="Hex Code"
           className={styles.input}
           type="text"
-          value={sliderCtx.theme.secondaryColor}
+          value={sliderCtx.theme.fontColor}
           onChange={(e) => {
             sliderCtx.setTheme((prev) => {
-              return { ...prev, secondaryColor: e.target.value };
+              return { ...prev, fontColor: e.target.value };
             });
           }}
         />
         <input
           className={styles.color_picker}
           type="color"
-          value={sliderCtx.theme.secondaryColor}
+          value={sliderCtx.theme.fontColor}
           onChange={(e) => {
             sliderCtx.setTheme((prev) => {
-              return { ...prev, secondaryColor: e.target.value };
+              return { ...prev, fontColor: e.target.value };
             });
           }}
         />

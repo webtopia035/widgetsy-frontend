@@ -18,7 +18,6 @@ const Home = () => {
   const ref = useRef(null);
   const router = useRouter();
   const dataCtx = useContext(ContextData);
-
   const getWidgetByUserId = async () => {
     // setSpinnerVisible(true);
     try {
@@ -37,7 +36,10 @@ const Home = () => {
       }
 
       const responseData = await response.json();
-      dataCtx.setTemplate(responseData.user);
+      if (responseData.user !== dataCtx.template) {
+        // console.log(responseData.user, dataCtx.template);
+        dataCtx.setTemplate(responseData.user);
+      }
       setSpinnerVisible(false);
     } catch (error) {
       console.log(error);
@@ -57,7 +59,8 @@ const Home = () => {
         setSpinnerVisible(false);
       }
     })();
-  }, [dataCtx.template]);
+  }, []);
+  // }, [dataCtx.template]);
 
   return (
     <div className={styles.home_container}>

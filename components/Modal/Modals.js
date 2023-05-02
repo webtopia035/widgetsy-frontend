@@ -10,7 +10,7 @@ const colorInitial = [
 const themeInitial = {
   themeNumber: 1,
   primaryColor: "#ffffff",
-  secondaryColor: "#ffffff",
+  fontColor: "#ffffff",
   rotation: 90,
 };
 
@@ -89,7 +89,7 @@ const Modals = React.forwardRef((props, ref) => {
             Calculator
           </option>
           <option className={styles.menu_items} htmlFor="widgets">
-            White Board
+            Calendar
           </option>
         </select>
         <br />
