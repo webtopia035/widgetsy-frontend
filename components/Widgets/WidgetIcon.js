@@ -6,9 +6,7 @@ import clock from "../../public/assets/clock.svg";
 import styles from "./WidgetIcon.module.css";
 
 const WidgetIcon = ({ hover, type }) => {
-  console.log(styles);
   const [widget, setWidget] = useState(null);
-  console.log(hover);
   useEffect(() => {
     switch (type) {
       case "Clock":

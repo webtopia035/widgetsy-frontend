@@ -6,15 +6,18 @@ import styles from "./Theme.module.css";
 
 // list of different themes
 const themeName = [
-  "Transparent",
+  "GrapeFruit Sunset",
   "Cinnamint",
   "Sky Line",
   "Deep Space",
   "Purpink",
 ];
-const color = ["#ffffff", "#12D8FA", "#0654a5", "#29323c", "#8c037a"];
+const color = ["#e96443", "#12D8FA", "#0654a5", "#29323c", "#8c037a"];
 const themeColor = [
-  [],
+  [
+    { color: "#e96443", stop: 0 },
+    { color: "#904e95", stop: 100 },
+  ],
   [
     { color: "#A6FFCB", stop: 0 },
     { color: "#12D8FA", stop: 50 },

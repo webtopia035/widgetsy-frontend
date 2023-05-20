@@ -7,7 +7,6 @@ import scss from "./BG.module.scss";
 
 const Editor = () => {
   const sliderCtx = useContext(BackgroundContext);
-  console.log(sliderCtx);
   return (
     <div className={styles.editor_container}>
       <div className={scss.space} />

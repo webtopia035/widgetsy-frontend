@@ -40,7 +40,8 @@ const Modals = React.forwardRef((props, ref) => {
       });
 
       const responseData = await response.json();
-      console.log(responseData);
+
+      dataCtx.setTemplate([...dataCtx.template, responseData.widget]);
     } catch (error) {
       console.log(error);
     }

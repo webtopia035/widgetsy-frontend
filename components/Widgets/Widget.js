@@ -5,7 +5,6 @@ import BackgroundContext from "../../contexts/background";
 const Widget = () => {
   const sliderCtx = useContext(BackgroundContext);
   const [widget, setWidget] = useState(null);
-  console.log(sliderCtx);
   useEffect(() => {
     switch (sliderCtx.details.type) {
       case "Clock":

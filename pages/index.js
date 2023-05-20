@@ -36,8 +36,10 @@ const Home = () => {
       }
 
       const responseData = await response.json();
-      if (responseData.user !== dataCtx.template) {
-        // console.log(responseData.user, dataCtx.template);
+      if (
+        JSON.stringify(responseData.user) !== JSON.stringify(dataCtx.template)
+      ) {
+        console.log(responseData.user, dataCtx.template);
         dataCtx.setTemplate(responseData.user);
       }
       setSpinnerVisible(false);
@@ -45,7 +47,6 @@ const Home = () => {
       console.log(error);
     }
   };
-
   // if user is not logged in redirect to login page
   useEffect(() => {
     (async () => {
@@ -59,8 +60,8 @@ const Home = () => {
         setSpinnerVisible(false);
       }
     })();
-  }, []);
-  // }, [dataCtx.template]);
+    // }, []);
+  }, [dataCtx.template]);
 
   return (
     <div className={styles.home_container}>
