@@ -45,22 +45,24 @@ const Navbar = () => {
     <div className={styles.navbar_container}>
       <div className={styles.logo}></div>
       <div className={styles.buttons}>
-        <div
-          className={`${styles.close_btn} ${styles.btn}`}
-          onClick={() => {
-            router.push("/");
-          }}
-        >
-          Close
+        <div id="eleven" className={styles.buttons}>
+          <div
+            className={`${styles.close_btn} ${styles.btn}`}
+            onClick={() => {
+              router.push("/");
+            }}
+          >
+            Close
+          </div>
+          <div
+            className={`${styles.save_btn} ${styles.btn}`}
+            onClick={updateHandler}
+          >
+            Save
+          </div>
         </div>
-        <div
-          className={`${styles.save_btn} ${styles.btn}`}
-          onClick={updateHandler}
-        >
-          Save
-        </div>
-        <div className={`${styles.download_btn} ${styles.btn}`}>
-          Download Source Code
+        <div id="twelve" className={`${styles.download_btn} ${styles.btn}`}>
+          Copy Source Code
         </div>
       </div>
     </div>

@@ -1,6 +1,8 @@
 import React, { useContext, useEffect } from "react";
 import { useRouter } from "next/router";
 import { config } from "../../utils/config";
+import Joyride from "react-joyride";
+import useWalkThrough from "../../hooks/useWalkThrough";
 import ContextData from "../../contexts/contextData";
 import BackgroundContext from "../../contexts/background";
 import Editor from "../../components/Editor/Editor";
@@ -50,13 +52,44 @@ const Builder = () => {
       fetchWidgetData();
     }
   }, [productId]);
-
+  const {
+    run,
+    steps,
+    stepIndex,
+    currentStep,
+    handleStart,
+    handleJoyrideCallback,
+  } = useWalkThrough();
   return (
     <div className={styles.builder_page}>
+      <Joyride
+        callback={handleJoyrideCallback}
+        continuous
+        run={run}
+        showProgress
+        showSkipButton
+        steps={steps}
+        hideBackButton={true}
+        styles={{
+          options: {
+            arrowColor: "#edf0ef",
+            backgroundColor: "#292929",
+            primaryColor: "#00a2ff",
+            textColor: "#edf0ef",
+            spotlightShadow: "0 0 15px rgba(0, 0, 0, 0.5)",
+            zIndex: 1000,
+          },
+        }}
+      />
       <Navbar />
       <div className={styles.container}>
         <Sidebar />
         <Editor />
+        <div>
+          <button className={styles.btn} onClick={handleStart}>
+            WT
+          </button>
+        </div>
       </div>
     </div>
   );

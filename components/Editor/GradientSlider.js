@@ -93,7 +93,7 @@ const GradientSlider = () => {
     <div
       ref={sliderContainer}
       onClick={(e) => handleColors(e)}
-      id="slider_container"
+      id="nine"
       className={styles.slider_container}
     >
       {gradient && (

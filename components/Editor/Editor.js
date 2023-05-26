@@ -15,7 +15,7 @@ const Editor = () => {
         <div className={styles.widget}>{sliderCtx.details?.type}</div>
       </div>
       {sliderCtx.gradientColor && (
-        <div className={styles.output_container}>
+        <div className={styles.output_container} id="two">
           <Widget />
         </div>
       )}
