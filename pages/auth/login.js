@@ -3,7 +3,7 @@ import Link from "next/link";
 import { config } from "../../utils/config";
 import { useRouter } from "next/router";
 import ContextData from "../../contexts/contextData";
-import styles from "../../styles/Login.module.css";
+import styles from "../../styles/login.module.css";
 
 const Login = () => {
   const [showPassword, setShowPassword] = useState(false);

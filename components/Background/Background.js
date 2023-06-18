@@ -122,7 +122,7 @@ const Background = () => {
         className={styles.output}
         style={{ background: `${sliderCtx.gradientColor}` }}
       ></div>
-      <div className={styles.editing_panel}>
+      <div className={styles.editing_panel} id="ten">
         <div className={styles.color_panel}>
           <input
             placeholder="Hex Code"
@@ -172,7 +172,7 @@ const Background = () => {
           </span>
         </div>
       </div>
-      <div className={styles.color_list}>
+      <div className={styles.color_list} id="eight">
         <table cellSpacing={0}>
           <thead className={styles.table_head}>
             <tr>

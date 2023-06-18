@@ -18,7 +18,6 @@ const Home = () => {
   const ref = useRef(null);
   const router = useRouter();
   const dataCtx = useContext(ContextData);
-
   const getWidgetByUserId = async () => {
     // setSpinnerVisible(true);
     try {
@@ -37,13 +36,17 @@ const Home = () => {
       }
 
       const responseData = await response.json();
-      dataCtx.setTemplate(responseData.user);
+      if (
+        JSON.stringify(responseData.user) !== JSON.stringify(dataCtx.template)
+      ) {
+        console.log(responseData.user, dataCtx.template);
+        dataCtx.setTemplate(responseData.user);
+      }
       setSpinnerVisible(false);
     } catch (error) {
       console.log(error);
     }
   };
-
   // if user is not logged in redirect to login page
   useEffect(() => {
     (async () => {
@@ -57,6 +60,7 @@ const Home = () => {
         setSpinnerVisible(false);
       }
     })();
+    // }, []);
   }, [dataCtx.template]);
 
   return (

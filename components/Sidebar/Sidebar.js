@@ -17,7 +17,7 @@ const Sidebar = () => {
       ) : sliderCtx.elements === "background" ? (
         <Background />
       ) : (
-        <>
+        <div id="three">
           <div className={styles.general_container}>
             <div className={styles.general}>General</div>
             <div
@@ -48,7 +48,7 @@ const Sidebar = () => {
               Background
             </div>
           </div>
-        </>
+        </div>
       )}
     </div>
   );

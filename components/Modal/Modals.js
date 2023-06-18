@@ -10,7 +10,7 @@ const colorInitial = [
 const themeInitial = {
   themeNumber: 1,
   primaryColor: "#ffffff",
-  secondaryColor: "#ffffff",
+  fontColor: "#ffffff",
   rotation: 90,
 };
 
@@ -40,7 +40,8 @@ const Modals = React.forwardRef((props, ref) => {
       });
 
       const responseData = await response.json();
-      console.log(responseData);
+
+      dataCtx.setTemplate([...dataCtx.template, responseData.widget]);
     } catch (error) {
       console.log(error);
     }
@@ -89,7 +90,7 @@ const Modals = React.forwardRef((props, ref) => {
             Calculator
           </option>
           <option className={styles.menu_items} htmlFor="widgets">
-            White Board
+            Calendar
           </option>
         </select>
         <br />

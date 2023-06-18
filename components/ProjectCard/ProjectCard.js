@@ -1,10 +1,13 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import ContextData from "../../contexts/contextData";
 import { config } from "../../utils/config";
+import WidgetIcon from "../Widgets/WidgetIcon";
 import styles from "./ProjectCard.module.css";
 
 const ProjectCard = React.forwardRef((props, ref) => {
+  const [hover, setHover] = useState(false);
   const dataCtx = useContext(ContextData);
+  // console.log(props);
   const deleteHandler = async (e) => {
     e.preventDefault();
 
@@ -38,13 +41,16 @@ const ProjectCard = React.forwardRef((props, ref) => {
       onClick={props.onClick}
       ref={ref}
       className={styles.project_card}
+      onMouseEnter={() => setHover(true)}
+      onMouseLeave={() => setHover(false)}
     >
       <div className={styles.project_icon}>
-        <div className={styles.project_delete} onClick={deleteHandler}>
-          <i className="bi bi-trash3-fill"></i>
-        </div>
+        <WidgetIcon hover={hover} type={props.wid.type} />
       </div>
       <div className={styles.project_name}>{props.wid.title}</div>
+      <div className={styles.project_delete} onClick={deleteHandler}>
+        <i className="bi bi-trash3-fill"></i>
+      </div>
     </div>
   );
 });
