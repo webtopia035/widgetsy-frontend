@@ -9,7 +9,7 @@ import Modals from "../components/Modal/Modals";
 import ContextData from "../contexts/contextData";
 import styles from "../styles/home.module.css";
 
-let userId = "6333eee649b8e1b484229e12";
+let userId = "648ef0a908d86d61def07b08";
 const Home = () => {
   const [open, setOpen] = useState(false);
   const handleOpen = () => setOpen(true);
@@ -18,8 +18,8 @@ const Home = () => {
   const ref = useRef(null);
   const router = useRouter();
   const dataCtx = useContext(ContextData);
+
   const getWidgetByUserId = async () => {
-    // setSpinnerVisible(true);
     try {
       const response = await fetch(
         `${config.url}/api/widget/user/${dataCtx.userId || userId}`,
@@ -30,11 +30,9 @@ const Home = () => {
           },
         }
       );
-
       if (!response.ok) {
         throw new Error(response.message);
       }
-
       const responseData = await response.json();
       if (
         JSON.stringify(responseData.user) !== JSON.stringify(dataCtx.template)
@@ -47,20 +45,20 @@ const Home = () => {
       console.log(error);
     }
   };
-  // if user is not logged in redirect to login page
+
   useEffect(() => {
     (async () => {
       await new Promise((resolve) => setTimeout(resolve, 1000));
-      if (dataCtx.userId) {
+      if (localStorage.getItem("userId")) {
         getWidgetByUserId();
         setSpinnerVisible(false);
+        dataCtx.setUserId(localStorage.getItem("userId"));
       } else {
         router.push("/auth/login");
         await new Promise((resolve) => setTimeout(resolve, 1000));
         setSpinnerVisible(false);
       }
     })();
-    // }, []);
   }, [dataCtx.template]);
 
   return (
