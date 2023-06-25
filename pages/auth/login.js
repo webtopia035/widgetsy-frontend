@@ -1,4 +1,4 @@
-import React, { useState, useContext } from "react";
+import React, { useState, useContext, useEffect } from "react";
 import Link from "next/link";
 import { config } from "../../utils/config";
 import { useRouter } from "next/router";
@@ -20,19 +20,32 @@ const Login = () => {
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify({
-          email: cred.email,
-          password: cred.password,
-        }),
+        body: JSON.stringify(
+          {
+            email: cred.email,
+            password: cred.password,
+          },
+          {
+            headers: {
+              Authorization: "Bearer " + localStorage.getItem("token"),
+              "Content-Type": "application/json",
+            },
+          }
+        ),
       });
 
       if (!response.ok) {
         throw new Error(response.message);
       }
 
-      const responseData = await response.json();
-      dataCtx.setUserId(responseData.userId);
-      router.push("/");
+      const { token, userId } = await response.json();
+
+      if (userId) {
+        localStorage.setItem("token", token);
+        localStorage.setItem("userId", userId);
+        dataCtx.setUserId(userId);
+        router.push("/");
+      }
     } catch (error) {
       console.log(error);
     }
