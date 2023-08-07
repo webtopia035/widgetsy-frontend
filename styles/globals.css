@@ -19,6 +19,11 @@ a {
   padding: 0;
 }
 
+.react-joyride__overlay{
+  height:100vh !important;
+  width:100vw;
+}
+
 @media (prefers-color-scheme: dark) {
   html {
     color-scheme: dark;

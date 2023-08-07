@@ -9,11 +9,13 @@ import Editor from "../../components/Editor/Editor";
 import Navbar from "../../components/Navbar/Navbar";
 import Sidebar from "../../components/Sidebar/Sidebar";
 import styles from "../../styles/builder.module.css";
+import useTheme from "../../hooks/useTheme";
 
 const Builder = () => {
   const router = useRouter();
   const dataCtx = useContext(ContextData);
   const sliderCtx = useContext(BackgroundContext);
+  const themeColor = useTheme();
   const productId = router.query.builder;
   dataCtx.setWidgetId(productId);
 
@@ -39,6 +41,11 @@ const Builder = () => {
 
           sliderCtx.setColors(responseData.widget.config.sliderColor);
           sliderCtx.setTheme(responseData.widget.config.gradientTheme);
+          if (responseData.widget.config.gradientTheme !== 0) {
+            sliderCtx.setColors(
+              themeColor[responseData.widget.config.gradientTheme.themeNumber]
+            );
+          }
           sliderCtx.setDetails({
             title: responseData.widget.title,
             description: responseData.widget.description,
@@ -87,7 +94,7 @@ const Builder = () => {
         <Editor />
         <div>
           <button className={styles.btn} onClick={handleStart}>
-            WT
+            <i className="bi bi-question-octagon-fill"></i>
           </button>
         </div>
       </div>

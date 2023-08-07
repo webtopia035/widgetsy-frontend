@@ -8,13 +8,13 @@
 }
 
 .home_background {
-  height: 50vh;
+  height: 40vh;
   width: 100%;
-  background: rgb(10, 50, 251);
+  background: 0558ee;
   background: linear-gradient(
-    295deg,
-    rgba(10, 50, 251, 1) 0%,
-    rgb(23, 193, 245) 100%
+    270deg,
+    #0558ee 0%,
+    #1bcbe7 100%
   );
   overflow-x: hidden;
 }

@@ -7,7 +7,7 @@
 .container {
   display: flex;
 }
-
+/* 
 .btn {
   
   align-items: center;
@@ -38,9 +38,7 @@
   white-space: nowrap;
   will-change: box-shadow,transform;
   font-size: 18px;
-  position: absolute;
-  bottom: 50px;
-  right: 50px;
+  
 }
 
 .btn:focus {
@@ -55,7 +53,33 @@
 .btn:active {
   box-shadow: #3c4fe0 0 3px 7px inset;
   transform: translateY(2px);
+} */
+
+         
+.btn {
+  background-image: linear-gradient(to right, #0558ee 0%, #1bcbe7  51%,#0558ee   100%);
+  margin: 10px;
+  padding: 15px 15px;
+  font-size: larger;
+  text-align: center;
+  transition: 0.5s;
+  background-size: 200% auto;
+  color: white;            
+  /* box-shadow: 0 0 20px #eee; */
+  border-radius: 10px;
+  display: block;
+  position: absolute;
+  bottom: 40px;
+  right: 40px;
+  border: 0px;
 }
+
+.btn:hover {
+  background-position: right center; /* change the direction of the change here */
+  color: #fff;
+  text-decoration: none;
+}
+
 .pg{
   position: absolute;
   top: 150px;

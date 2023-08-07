@@ -8,9 +8,9 @@ const colorInitial = [
 ];
 
 const themeInitial = {
-  themeNumber: 1,
+  themeNumber: 0,
   primaryColor: "#ffffff",
-  fontColor: "#ffffff",
+  fontColor: "#000000",
   rotation: 90,
 };
 
