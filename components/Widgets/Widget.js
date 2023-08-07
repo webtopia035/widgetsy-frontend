@@ -6,7 +6,7 @@ const Widget = () => {
   const sliderCtx = useContext(BackgroundContext);
   const [widget, setWidget] = useState(null);
   useEffect(() => {
-    switch (sliderCtx.details.type) {
+    switch (sliderCtx?.details?.type) {
       case "Clock":
         setWidget(
           <Clock

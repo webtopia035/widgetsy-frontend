@@ -5,6 +5,7 @@ import { useRouter } from "next/router";
 import { ThreeCircles } from "react-loader-spinner";
 import Link from "next/link";
 import ProjectCard from "../components/ProjectCard/ProjectCard";
+import HomeNav from "../components/HomeNav/HomeNav";
 import Modals from "../components/Modal/Modals";
 import ContextData from "../contexts/contextData";
 import styles from "../styles/home.module.css";
@@ -37,7 +38,6 @@ const Home = () => {
       if (
         JSON.stringify(responseData.user) !== JSON.stringify(dataCtx.template)
       ) {
-        console.log(responseData.user, dataCtx.template);
         dataCtx.setTemplate(responseData.user);
       }
       setSpinnerVisible(false);
@@ -82,6 +82,7 @@ const Home = () => {
         />
       ) : (
         <>
+          <HomeNav />
           <div className={styles.home_background}></div>
           <div className={styles.container}>
             <div className={styles.add_project_card} onClick={handleOpen}>

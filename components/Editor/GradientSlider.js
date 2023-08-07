@@ -52,6 +52,9 @@ const GradientSlider = () => {
 
   const handleColors = (e) => {
     e.stopPropagation();
+    sliderCtx.setTheme((prev) => {
+      return { ...prev, themeNumber: 0 };
+    });
     sliderCtx.setElements("background");
     const rect = e.target.getBoundingClientRect();
     const x = e.clientX - rect.left;
