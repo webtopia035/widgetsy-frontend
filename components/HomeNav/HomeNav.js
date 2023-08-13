@@ -26,7 +26,7 @@ const HomeNav = () => {
           <ul>
             <li>
               <a href="https://widgetesy-docs.vercel.app/">
-                Doss <i className="bi bi-box-arrow-up-right" />
+                Docs <i className="bi bi-box-arrow-up-right" />
               </a>
             </li>
             <li className={styles.navLink}>
@@ -39,7 +39,7 @@ const HomeNav = () => {
                     </a>
                   </li>
                   <li className={styles.dropdownLink}>
-                    <a href="#">
+                    <a href="https://discord.gg/7aYSP59rJh">
                       <i className="bi bi-discord"></i> Discord
                     </a>
                   </li>
