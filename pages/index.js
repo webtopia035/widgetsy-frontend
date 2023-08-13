@@ -9,8 +9,10 @@ import HomeNav from "../components/HomeNav/HomeNav";
 import Modals from "../components/Modal/Modals";
 import ContextData from "../contexts/contextData";
 import styles from "../styles/home.module.css";
+import BgImage1 from "../public/assets/navbar-image1.png";
+import BgImage2 from "../public/assets/navbar-image2.png";
+import Image from "next/image";
 
-let userId = "648ef0a908d86d61def07b08";
 const Home = () => {
   const [open, setOpen] = useState(false);
   const handleOpen = () => setOpen(true);
@@ -23,7 +25,7 @@ const Home = () => {
   const getWidgetByUserId = async () => {
     try {
       const response = await fetch(
-        `${config.url}/api/widget/user/${dataCtx.userId || userId}`,
+        `${config.url}/api/widget/user/${dataCtx.userId}`,
         {
           method: "GET",
           headers: {
@@ -39,6 +41,7 @@ const Home = () => {
         JSON.stringify(responseData.user) !== JSON.stringify(dataCtx.template)
       ) {
         dataCtx.setTemplate(responseData.user);
+        console.log(responseData.user);
       }
       setSpinnerVisible(false);
     } catch (error) {
@@ -83,7 +86,10 @@ const Home = () => {
       ) : (
         <>
           <HomeNav />
-          <div className={styles.home_background}></div>
+          <div className={styles.home_background}>
+            <Image height={400} width={400} src={BgImage1} alt="nav-item" />
+            <Image height={400} width={400} src={BgImage2} alt="nav-item" />
+          </div>
           <div className={styles.container}>
             <div className={styles.add_project_card} onClick={handleOpen}>
               <div className={styles.plus_icon}>

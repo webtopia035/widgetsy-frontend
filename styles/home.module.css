@@ -11,12 +11,10 @@
   height: 40vh;
   width: 100%;
   background: 0558ee;
-  background: linear-gradient(
-    270deg,
-    #0558ee 0%,
-    #1bcbe7 100%
-  );
+  background: linear-gradient(270deg, #0558ee 0%, #1bcbe7 100%);
   overflow-x: hidden;
+  display: flex;
+  justify-content: space-between;
 }
 
 .container {
