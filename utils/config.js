@@ -1,6 +1,6 @@
 // Constants.js
 const production = {
-  url: "https://widgetsy-backend.onrender.com",
+  url: "widgetsy-backend-production.up.railway.app",
 };
 const development = {
   url: "http://localhost:8000",
