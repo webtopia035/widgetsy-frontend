@@ -1,17 +1,17 @@
-import React, { useState, useEffect, useRef, useContext } from "react";
-import { config } from "../utils/config";
-import { Modal } from "@mui/material";
-import { useRouter } from "next/router";
-import { ThreeCircles } from "react-loader-spinner";
-import Link from "next/link";
-import ProjectCard from "../components/ProjectCard/ProjectCard";
-import HomeNav from "../components/HomeNav/HomeNav";
-import Modals from "../components/Modal/Modals";
-import ContextData from "../contexts/contextData";
-import styles from "../styles/home.module.css";
-import BgImage1 from "../public/assets/navbar-image1.png";
-import BgImage2 from "../public/assets/navbar-image2.png";
-import Image from "next/image";
+import React, { useState, useEffect, useRef, useContext } from 'react';
+import { config } from '../utils/config';
+import { Modal } from '@mui/material';
+import { useRouter } from 'next/router';
+import { ThreeCircles } from 'react-loader-spinner';
+import Link from 'next/link';
+import ProjectCard from '../components/ProjectCard/ProjectCard';
+import HomeNav from '../components/HomeNav/HomeNav';
+import Modals from '../components/Modal/Modals';
+import ContextData from '../contexts/contextData';
+import styles from '../styles/home.module.css';
+import BgImage1 from '../public/assets/navbar-image1.png';
+import BgImage2 from '../public/assets/navbar-image2.png';
+import Image from 'next/image';
 
 const Home = () => {
   const [open, setOpen] = useState(false);
@@ -24,15 +24,14 @@ const Home = () => {
 
   const getWidgetByUserId = async () => {
     try {
-      const response = await fetch(
-        `${config.url}/api/widget/user/${dataCtx.userId}`,
-        {
-          method: "GET",
-          headers: {
-            "Content-Type": "application/json",
-          },
-        }
-      );
+      const userId = localStorage.getItem('userId');
+
+      const response = await fetch(`${config.url}/api/widget/user/${userId}`, {
+        method: 'GET',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      });
       if (!response.ok) {
         throw new Error(response.message);
       }
@@ -52,12 +51,13 @@ const Home = () => {
   useEffect(() => {
     (async () => {
       await new Promise((resolve) => setTimeout(resolve, 1000));
-      if (localStorage.getItem("userId")) {
-        getWidgetByUserId();
+      const userId = localStorage.getItem('userId');
+      if (userId) {
+        dataCtx.setUserId(userId);
         setSpinnerVisible(false);
-        dataCtx.setUserId(localStorage.getItem("userId"));
+        getWidgetByUserId();
       } else {
-        router.push("/auth/login");
+        router.push('/auth/login');
         await new Promise((resolve) => setTimeout(resolve, 1000));
         setSpinnerVisible(false);
       }
@@ -76,11 +76,11 @@ const Home = () => {
           innerCircleColor="#39c0fa"
           middleCircleColor="#7ad1fa"
           wrapperStyle={{
-            height: "100vh",
-            width: "100vw",
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "center",
+            height: '100vh',
+            width: '100vw',
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
           }}
         />
       ) : (
