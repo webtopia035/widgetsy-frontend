@@ -1,9 +1,11 @@
 import React, { useState, useContext } from "react";
 import { config } from "../../utils/config";
+import Image from "next/image";
 import { useRouter } from "next/router";
 import ContextData from "../../contexts/contextData";
 import Link from "next/link";
 import styles from "../../styles/signup.module.css";
+import illustration from "../../public/assets/illustration.png";
 
 const Signup = () => {
   const [showPassword, setShowPassword] = useState(false);
@@ -37,7 +39,13 @@ const Signup = () => {
   return (
     <div className={`${styles.auth} ${styles.signup_page}`}>
       <div className={styles.auth_container}>
-        <div className={styles.image_container}></div>
+        <div className={styles.image_container}>
+          <Image
+            src={illustration}
+            alt="illustration"
+            className={styles.image}
+          />
+        </div>
         <div className={styles.signup_container}>
           <div className={styles.signup_content}>
             <div className={styles.header}>Create your account</div>
@@ -105,16 +113,7 @@ const Signup = () => {
                 value="signup"
               />
             </form>
-            <div className={styles.or}>OR</div>
-            <button className={styles.signup_google}>
-              {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img
-                className={styles.google_logo}
-                src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/53/Google_%22G%22_Logo.svg/800px-Google_%22G%22_Logo.svg.png"
-                alt="google"
-              />
-              CONTINUE WITH GOOGLE (Coming soon!)
-            </button>
+
             <p className={styles.login_text}>
               Already have an account?{" "}
               <span className={styles.login_btn}>

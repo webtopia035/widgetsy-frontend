@@ -73,24 +73,72 @@ const Modals = React.forwardRef((props, ref) => {
           className={styles.dropdown}
           name="widgets"
           onChange={(e) => setWidget({ ...widget, type: e.target.value })}
+          defaultValue="none"
         >
-          <option
-            defaultValue="none"
-            className={styles.menu_items}
-            selected
-            disabled
-            hidden
-          >
+          <option defaultValue="none" className={styles.menu_items}>
             -Select an Widget-
           </option>
-          <option className={styles.menu_items} htmlFor="widgets">
+          <option className={styles.menu_items} htmlFor="widgets" value="Clock">
             Clock
           </option>
-          <option className={styles.menu_items} htmlFor="widgets">
+          <option
+            className={styles.menu_items}
+            htmlFor="widgets"
+            value="Calculator"
+          >
             Calculator
           </option>
-          <option className={styles.menu_items} htmlFor="widgets">
+          <option
+            className={styles.menu_items}
+            htmlFor="widgets"
+            value="Calender"
+          >
             Calendar
+          </option>
+          <option className={styles.menu_items} htmlFor="widgets" value="Timer">
+            Timer
+          </option>
+          <option
+            className={styles.menu_items}
+            htmlFor="widgets"
+            value="Whiteboard"
+          >
+            White Board
+          </option>
+          <option
+            className={styles.menu_items}
+            htmlFor="widgets"
+            value="LengthConverter"
+          >
+            Length Converter
+          </option>
+          <option
+            className={styles.menu_items}
+            htmlFor="widgets"
+            value="MassConverter"
+          >
+            Mass Converter
+          </option>
+          <option
+            className={styles.menu_items}
+            htmlFor="widgets"
+            value="TemperatureConverter"
+          >
+            Temperature Converter
+          </option>
+          <option
+            className={styles.menu_items}
+            htmlFor="widgets"
+            value="AreaConverter"
+          >
+            Area Converter
+          </option>
+          <option
+            className={styles.menu_items}
+            htmlFor="widgets"
+            value="SpeedConverter"
+          >
+            Speed Converter
           </option>
         </select>
         <br />

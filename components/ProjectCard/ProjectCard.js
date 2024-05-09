@@ -48,6 +48,7 @@ const ProjectCard = React.forwardRef((props, ref) => {
         <WidgetIcon hover={hover} type={props.wid.type} />
       </div>
       <div className={styles.project_name}>{props.wid.title}</div>
+      <div className={styles.project_type}>{props.wid.type}</div>
       <div className={styles.project_delete} onClick={deleteHandler}>
         <i className="bi bi-trash3-fill"></i>
       </div>

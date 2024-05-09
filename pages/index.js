@@ -24,15 +24,14 @@ const Home = () => {
 
   const getWidgetByUserId = async () => {
     try {
-      const response = await fetch(
-        `${config.url}/api/widget/user/${dataCtx.userId}`,
-        {
-          method: "GET",
-          headers: {
-            "Content-Type": "application/json",
-          },
-        }
-      );
+      const userId = localStorage.getItem("userId");
+
+      const response = await fetch(`${config.url}/api/widget/user/${userId}`, {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
       if (!response.ok) {
         throw new Error(response.message);
       }
@@ -52,10 +51,11 @@ const Home = () => {
   useEffect(() => {
     (async () => {
       await new Promise((resolve) => setTimeout(resolve, 1000));
-      if (localStorage.getItem("userId")) {
-        getWidgetByUserId();
+      const userId = localStorage.getItem("userId");
+      if (userId) {
+        dataCtx.setUserId(userId);
         setSpinnerVisible(false);
-        dataCtx.setUserId(localStorage.getItem("userId"));
+        getWidgetByUserId();
       } else {
         router.push("/auth/login");
         await new Promise((resolve) => setTimeout(resolve, 1000));
